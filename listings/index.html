@@ -1,0 +1,180 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Atlanta Home Listings — JSong Realty | Joshua Song</title>
+  <meta name="description" content="Search active Atlanta real estate listings — single-family homes, condos, and townhouses from Intown to Buckhead, direct from the MLS." />
+  <link rel="canonical" href="/listings/" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link href="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css" rel="stylesheet" />
+  <script src="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js"></script>
+</head>
+<body class="inner-page">
+
+  <header class="site-header solid">
+    <nav class="nav" aria-label="Primary">
+      <a href="../index.html" class="brand" aria-label="JSong Realty home">
+        <span><span class="brand-mark">JS</span>ong</span>
+        <span class="brand-sub">Realty</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about/index.html">About</a></li>
+        <li><a href="index.html">Listings</a></li>
+        <li><a href="../buyers/index.html">Buyers</a></li>
+        <li><a href="../sellers/index.html">Sellers</a></li>
+        <li><a href="../blog/index.html">Blog</a></li>
+        <li><a href="../contact/index.html" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../index.html">Home</a> &nbsp;/&nbsp; Listings</nav>
+      <span class="eyebrow">Active listings · MLS-connected</span>
+      <h1>Atlanta homes for sale.</h1>
+      <p>Search the full MLS — results update as the market does. Every listing gets its own page; share, bookmark, and come back any time.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="market-pills" aria-label="Search overview">
+        <div class="market-pill">
+          <strong>Intown-first</strong>
+          <span>Midtown to Decatur</span>
+        </div>
+        <div class="market-pill">
+          <strong>Fresh daily</strong>
+          <span>MLS-synced inventory</span>
+        </div>
+        <div class="market-pill">
+          <strong>Private help</strong>
+          <span>Text for curated matches</span>
+        </div>
+      </div>
+
+      <form class="search-bar search-bar-wide" role="search" aria-label="Search homes">
+        <input type="search" name="q" placeholder='Try: "3BR craftsman with a screened porch under $800k"' aria-label="Search homes" />
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+
+      <div class="listings-toolbar">
+        <div class="filter-chips" role="tablist" aria-label="Property type">
+          <button class="filter-chip active" type="button">All</button>
+          <button class="filter-chip" type="button">Single Family</button>
+          <button class="filter-chip" type="button">Condo</button>
+          <button class="filter-chip" type="button">Townhouse</button>
+          <button class="filter-chip" type="button">New Construction</button>
+          <button class="filter-chip" type="button">Under $500k</button>
+          <button class="filter-chip" type="button">$500k &ndash; $1M</button>
+          <button class="filter-chip" type="button">$1M+</button>
+        </div>
+        <select class="filter-chip filter-select" aria-label="Sort">
+          <option>Sort: Newest</option>
+          <option>Price: Low → High</option>
+          <option>Price: High → Low</option>
+          <option>Largest sqft</option>
+        </select>
+      </div>
+
+      <div class="listings-layout">
+        <div class="property-grid" data-listings-grid>
+          <noscript>
+            <p>Enable JavaScript to browse live MLS listings, or <a href="../contact/index.html">contact Joshua</a> for a curated list.</p>
+          </noscript>
+        </div>
+        <aside class="map-placeholder" data-map aria-label="Map of listings">
+          <div>
+            <strong>Interactive map</strong>
+            Add your Mapbox token in <code>assets/js/api-config.js</code> to activate viewport-bounds loading and clustering.
+          </div>
+        </aside>
+      </div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-outline">Load more listings</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <span class="eyebrow eyebrow-light">Private search</span>
+          <h2>Can't find the right home?</h2>
+          <p>Send me what you're looking for — I'll set up a private search and surface off-market options.</p>
+        </div>
+        <a class="btn btn-accent btn-lg" href="../contact/index.html">Request a private search</a>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../index.html" class="brand" aria-label="JSong Realty home">
+            <span><span class="brand-mark">JS</span>ong</span>
+            <span class="brand-sub">Realty</span>
+          </a>
+          <p><span data-brand-agent>Joshua Song</span> · REALTOR® · <span data-brand-brokerage>Red 1 Realty</span> · <span data-brand-city>Atlanta, GA</span></p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="index.html">Listings</a></li>
+            <li><a href="../buyers/index.html">Buyers</a></li>
+            <li><a href="../sellers/index.html">Sellers</a></li>
+            <li><a href="../blog/index.html">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about/index.html">About</a></li>
+            <li><a href="../contact/index.html">Contact</a></li>
+            <li><a data-brand-instagram href="#" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a data-brand-phone href="#"></a></li>
+            <li><a data-brand-email href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year></span> JSong Realty. All rights reserved.</span>
+        <span>Equal Housing Opportunity. Licensed in the State of Georgia.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/api-config.js"></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/listings.js" defer></script>
+  <script>
+    document.querySelectorAll(".filter-chip").forEach(chip => {
+      if (chip.tagName !== "BUTTON") return;
+      chip.addEventListener("click", () => {
+        document.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("active"));
+        chip.classList.add("active");
+      });
+    });
+  </script>
+</body>
+</html>
