@@ -137,16 +137,19 @@
   }
 
   /* ---------- Active nav link (relative-path aware) ---------- */
-  const path = location.pathname.replace(/\/index\.html$/, "/");
-  // Get last directory segment(s)
-  const pathSegments = path.split("/").filter(Boolean);
-  const currentSection = pathSegments[pathSegments.length - 1] || "";
+  function normalizePath(pathname) {
+    return pathname
+      .replace(/\/index\.html$/, "/")
+      .replace(/\/+$/, "/");
+  }
+
+  const currentPath = normalizePath(location.pathname);
 
   document.querySelectorAll(".nav-links a").forEach((a) => {
     const href = a.getAttribute("href") || "";
-    // Normalize: strip leading ../ and trailing index.html
-    const cleaned = href.replace(/^(\.\.\/)+/, "").replace(/index\.html$/, "").replace(/\/$/, "");
-    if (!cleaned) return; // Skip home link
-    if (pathSegments.includes(cleaned)) a.classList.add("active");
+    if (!href || href.startsWith("#")) return;
+
+    const targetPath = normalizePath(new URL(href, location.href).pathname);
+    if (targetPath === currentPath) a.classList.add("active");
   });
 })();

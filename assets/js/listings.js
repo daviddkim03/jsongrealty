@@ -29,10 +29,10 @@
         // The prefix (everything before "assets/") is the site root from here.
         const idx = src.indexOf("assets/js/listings.js");
         const rootPrefix = idx >= 0 ? src.substring(0, idx) : "";
-        return rootPrefix + "listings/sample-property/index.html";
+        return rootPrefix + "listings/sample-property/";
       }
     }
-    return "listings/sample-property/index.html";
+    return "listings/sample-property/";
   }
 
   /* ---------- Auth header helper ---------- */
