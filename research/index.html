@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Address Research — JSong Realty | Joshua Song</title>
+  <meta name="description" content="Look up any Atlanta address — get an estimated value, walkability score, and neighborhood data, free." />
+  <link rel="canonical" href="./" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body class="inner-page">
+
+  <header class="site-header solid">
+    <nav class="nav" aria-label="Primary">
+      <a href="../" class="brand" aria-label="JSong Realty home">
+        <span><span class="brand-mark">JS</span>ong</span>
+        <span class="brand-sub">Realty</span>
+      </a>
+      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <line x1="4" y1="7" x2="20" y2="7"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="17" x2="20" y2="17"/>
+        </svg>
+      </button>
+      <ul class="nav-links">
+        <li><a href="../">Home</a></li>
+        <li><a href="../about/">About</a></li>
+        <li><a href="../listings/">Listings</a></li>
+        <li><a href="../buyers/">Buyers</a></li>
+        <li><a href="../sellers/">Sellers</a></li>
+        <li><a href="../blog/">Blog</a></li>
+        <li><a href="../contact/" class="nav-cta">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="../">Home</a> &nbsp;/&nbsp; Research</nav>
+      <span class="eyebrow">Free address lookup</span>
+      <h1>Research any Atlanta address.</h1>
+      <p>Get an estimated value, walkability score, and neighborhood data — for any address you're curious about, listed or not.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <form class="search-bar search-bar-wide" data-research-form role="search" aria-label="Address lookup">
+        <input type="search" name="address" required
+               placeholder="e.g. 1240 Piedmont Ave NE, Atlanta GA 30309"
+               aria-label="Address" />
+        <button class="btn btn-primary" type="submit">Look up</button>
+      </form>
+      <p class="text-center" data-research-status hidden></p>
+
+      <div data-research-results hidden>
+        <h2 class="detail-section-title">
+          Looking up: <span data-research-address style="font-style: normal; font-weight: 500;"></span>
+        </h2>
+
+        <h2 class="detail-section-title">Estimated value &amp; history</h2>
+        <p class="pd-source-badge" data-pd-source="avm">Demo data — add API key in api-config.js</p>
+        <div class="stat-grid">
+          <div><strong data-pd-avm-mid>—</strong><span>Estimated value</span></div>
+          <div><strong data-pd-avm-range>—</strong><span>Estimate range</span></div>
+          <div><strong data-pd-last-sale-price>—</strong><span>Last sold (<span data-pd-last-sale-year>—</span>)</span></div>
+          <div><strong data-pd-tax-assessment>—</strong><span>Tax assessment</span></div>
+          <div><strong data-pd-tax-annual>—</strong><span>Annual taxes</span></div>
+        </div>
+
+        <h2 class="detail-section-title">Walkability &amp; transit</h2>
+        <p class="pd-source-badge" data-pd-source="walk">Demo data — add API key in api-config.js</p>
+        <div class="stat-grid">
+          <div><strong data-pd-walk-score>—</strong><span>Walk Score</span></div>
+          <div><strong data-pd-transit-score>—</strong><span>Transit Score</span></div>
+          <div><strong data-pd-bike-score>—</strong><span>Bike Score</span></div>
+        </div>
+
+        <h2 class="detail-section-title">Neighborhood at a glance</h2>
+        <p class="pd-source-badge" data-pd-source="census">Loading from US Census…</p>
+        <div class="stat-grid">
+          <div><strong data-pd-median-income>—</strong><span>Median household income</span></div>
+          <div><strong data-pd-median-home-value>—</strong><span>Median home value (zip)</span></div>
+          <div><strong data-pd-population>—</strong><span>Population (zip)</span></div>
+        </div>
+
+        <h2 class="detail-section-title">Within a 10-minute walk</h2>
+        <p class="pd-source-badge" data-pd-source="nearby">Loading from OpenStreetMap…</p>
+        <div class="stat-grid">
+          <div><strong data-pd-nearby-food>—</strong><span>Cafés &amp; restaurants</span></div>
+          <div><strong data-pd-nearby-grocery>—</strong><span>Grocery / convenience</span></div>
+          <div><strong data-pd-nearby-parks>—</strong><span>Parks</span></div>
+          <div><strong data-pd-nearby-schools>—</strong><span>Schools</span></div>
+          <div><strong data-pd-nearby-transit>—</strong><span>Transit stops</span></div>
+        </div>
+
+        <div class="cta-band reveal" style="margin-top: 3rem;">
+          <div>
+            <span class="eyebrow eyebrow-light">Curious about this address?</span>
+            <h2>Want Joshua's take?</h2>
+            <p>Get a real-world read on whether the price is fair, what to watch out for, and how it compares to other homes on your shortlist.</p>
+          </div>
+          <a class="btn btn-accent btn-lg" href="../contact/">Talk to Joshua</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="../" class="brand" aria-label="JSong Realty home">
+            <span><span class="brand-mark">JS</span>ong</span>
+            <span class="brand-sub">Realty</span>
+          </a>
+          <p><span data-brand-agent>Joshua Song</span> · REALTOR® · <span data-brand-brokerage>Red 1 Realty</span> · <span data-brand-city>Atlanta, GA</span></p>
+        </div>
+        <div class="footer-col">
+          <h4>Explore</h4>
+          <ul>
+            <li><a href="../listings/">Listings</a></li>
+            <li><a href="../buyers/">Buyers</a></li>
+            <li><a href="../sellers/">Sellers</a></li>
+            <li><a href="../blog/">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="../about/">About</a></li>
+            <li><a href="../contact/">Contact</a></li>
+            <li><a data-brand-instagram href="#" target="_blank" rel="noopener">Instagram</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a data-brand-phone href="#"></a></li>
+            <li><a data-brand-email href="#"></a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© <span data-year></span> JSong Realty. All rights reserved.</span>
+        <span>Equal Housing Opportunity. Licensed in the State of Georgia.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="../assets/js/api-config.js"></script>
+  <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/property-data.js" defer></script>
+  <script src="../assets/js/research.js" defer></script>
+</body>
+</html>

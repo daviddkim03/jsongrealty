@@ -140,10 +140,49 @@
 
   <section class="section section-muted">
     <div class="container">
-      <blockquote class="testimonial reveal">
-        Joshua's pricing strategy was surgical. He told us exactly what the house should list at, why, and what to expect — and the house closed in 9 days at $14k over asking.
-        <cite>— K. &amp; R., Kirkwood sellers</cite>
-      </blockquote>
+      <div class="section-intro reveal">
+        <span class="eyebrow">In their words</span>
+        <h2>Recent seller reviews.</h2>
+      </div>
+      <div class="reviews-grid" data-reviews-grid></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="eyebrow">Free download</span>
+        <h2>The Atlanta Seller's Guide.</h2>
+        <p class="lead">A 24-page playbook covering everything from prep priorities to closing-day paperwork — with current submarket benchmarks and an offer-evaluation worksheet.</p>
+      </div>
+
+      <div class="lead-magnet reveal">
+        <div>
+          <h3>What's inside</h3>
+          <ul class="lead-magnet-features">
+            <li>Atlanta seller's submarket cheat sheet — what's moving fast, what's sitting, and why</li>
+            <li>The 7 pre-listing prep moves with the highest ROI (and the 3 to skip)</li>
+            <li>How to read a CMA — and the questions to ask before agreeing on a list price</li>
+            <li>Pre-listing inspection: when it's worth it, when it's not</li>
+            <li>Offer-evaluation worksheet — comparing offers beyond the headline price</li>
+            <li>Closing-day timeline and what your settlement statement actually means</li>
+          </ul>
+        </div>
+        <form class="lead-magnet-form" data-lead-magnet-form data-guide="seller">
+          <h3 style="margin-top:0;">Get the full PDF</h3>
+          <p class="form-helper" style="font-size:0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Drop your email and the guide arrives in your inbox. No drip campaign.</p>
+          <div class="field">
+            <label for="lm-s-name">Name</label>
+            <input id="lm-s-name" name="name" required />
+          </div>
+          <div class="field">
+            <label for="lm-s-email">Email</label>
+            <input id="lm-s-email" type="email" name="email" required />
+          </div>
+          <button class="btn btn-primary" type="submit" style="width:100%;">Send me the guide</button>
+          <p class="form-status" data-form-status hidden></p>
+        </form>
+      </div>
     </div>
   </section>
 
@@ -204,5 +243,7 @@
 
   <script src="../assets/js/api-config.js"></script>
   <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/reviews.js" defer></script>
+  <script src="../assets/js/lead-magnet.js" defer></script>
 </body>
 </html>

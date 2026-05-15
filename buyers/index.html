@@ -48,6 +48,51 @@
   <section class="section">
     <div class="container">
       <div class="section-intro reveal">
+        <span class="eyebrow">Why buy with Joshua</span>
+        <h2>What you can count on.</h2>
+        <p class="lead">Buying a home is one of the most consequential financial decisions you'll make. Here's what working with Joshua is built around.</p>
+      </div>
+
+      <div class="stat-grid">
+        <div><strong>50+</strong><span>Atlanta transactions</span></div>
+        <div><strong>$25M+</strong><span>Volume closed</span></div>
+        <div><strong>&lt; 1 hr</strong><span>Avg. weekday response</span></div>
+        <div><strong>9 days</strong><span>Avg. days from offer to ratify</span></div>
+        <div><strong>5.0 ★</strong><span>Average client rating</span></div>
+      </div>
+
+      <div class="grid grid-2 stack-lg">
+        <div class="feature reveal">
+          <span class="feature-num">▸</span>
+          <h3>Licensed REALTOR® · Red 1 Realty</h3>
+          <p>Member of the Atlanta REALTORS® Association and the National Association of REALTORS®, bound by the NAR Code of Ethics. Georgia license <span data-brand-license>(see About)</span>.</p>
+        </div>
+        <div class="feature reveal delay-1">
+          <span class="feature-num">▸</span>
+          <h3>Buyer-side specialist</h3>
+          <p>Comp-backed offers, inspection negotiation, contingency strategy. Post-2024 buyer-agent agreements drafted in plain English — no surprises at the closing table.</p>
+        </div>
+        <div class="feature reveal">
+          <span class="feature-num">▸</span>
+          <h3>Intown &amp; metro coverage</h3>
+          <p>Active in Midtown, Inman Park, Va-Hi, Morningside, Buckhead, Decatur, and the Westside. Comfortable from $300K starters to $2M+ luxury.</p>
+        </div>
+        <div class="feature reveal delay-1">
+          <span class="feature-num">▸</span>
+          <h3>Trusted vendor network</h3>
+          <p>Pre-vetted lenders, inspectors, attorneys, and contractors. You get introductions to people Joshua's worked with for years — no cold calls, no commission kickbacks.</p>
+        </div>
+      </div>
+
+      <p class="text-center" style="margin-top: 2rem; font-size: 0.85rem; color: var(--text-muted);">
+        Stats above are placeholders — Joshua, swap with your real numbers in <code>buyers/index.html</code>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section-intro reveal">
         <span class="eyebrow">The Process</span>
         <h2>Seven steps, no surprises.</h2>
         <p class="lead">Every client gets the same roadmap. Your timeline flexes; the structure doesn't.</p>
@@ -135,6 +180,54 @@
 
   <section class="section">
     <div class="container">
+      <div class="section-intro reveal">
+        <span class="eyebrow">In their words</span>
+        <h2>Recent client reviews.</h2>
+      </div>
+      <div class="reviews-grid" data-reviews-grid></div>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="eyebrow">Free download</span>
+        <h2>The Atlanta Buyer's Guide.</h2>
+        <p class="lead">A 28-page playbook covering every step from pre-approval to keys-in-hand — with real submarket data and a worksheet for sharpening your shortlist.</p>
+      </div>
+
+      <div class="lead-magnet reveal">
+        <div>
+          <h3>What's inside</h3>
+          <ul class="lead-magnet-features">
+            <li>Atlanta submarket cheat sheet — typical price bands and days-on-market across 14 neighborhoods</li>
+            <li>The pre-approval checklist most lenders won't tell you about</li>
+            <li>How to read an inspection report (and what's actually a deal-breaker)</li>
+            <li>Sample offer + escalation strategies for competitive bids</li>
+            <li>A 50-question shortlist worksheet to sharpen what you actually want</li>
+            <li>Closing-day timeline and a list of what to bring</li>
+          </ul>
+        </div>
+        <form class="lead-magnet-form" data-lead-magnet-form data-guide="buyer">
+          <h3 style="margin-top:0;">Get the full PDF</h3>
+          <p class="form-helper" style="font-size:0.9rem; color: var(--text-muted); margin-bottom: 1rem;">Drop your email and the guide arrives in your inbox. No drip campaign.</p>
+          <div class="field">
+            <label for="lm-name">Name</label>
+            <input id="lm-name" name="name" required />
+          </div>
+          <div class="field">
+            <label for="lm-email">Email</label>
+            <input id="lm-email" type="email" name="email" required />
+          </div>
+          <button class="btn btn-primary" type="submit" style="width:100%;">Send me the guide</button>
+          <p class="form-status" data-form-status hidden></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <div class="cta-band reveal">
         <div>
           <span class="eyebrow eyebrow-light">Let's start</span>
@@ -190,5 +283,7 @@
 
   <script src="../assets/js/api-config.js"></script>
   <script src="../assets/js/main.js" defer></script>
+  <script src="../assets/js/reviews.js" defer></script>
+  <script src="../assets/js/lead-magnet.js" defer></script>
 </body>
 </html>

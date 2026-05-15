@@ -5,6 +5,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>1240 Piedmont Ave NE, Atlanta GA 30309 — JSong Realty</title>
   <meta name="description" content="4BR / 3BA Midtown craftsman on Piedmont with a reimagined kitchen, screened porch, and two-car garage." />
+  <!-- Property data hooks — read by property-data.js to query AVM / WalkScore / Census -->
+  <meta name="property-address" content="1240 Piedmont Ave NE, Atlanta, GA 30309" />
+  <meta name="property-zip" content="30309" />
+  <meta name="property-lat" content="33.789" />
+  <meta name="property-lng" content="-84.379" />
   <link rel="canonical" href="./" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -59,6 +64,8 @@
             <span class="listing-meta-tag">MLS #DEMO-001</span>
           </div>
 
+          <a href="#showing-form" class="btn btn-primary show-now-btn">Schedule a showing →</a>
+
           <div class="stat-grid">
             <div><strong>4</strong><span>Bedrooms</span></div>
             <div><strong>3</strong><span>Full baths</span></div>
@@ -82,22 +89,70 @@
             <li>New HVAC (2024), updated roof (2023), tankless water heater</li>
           </ul>
 
+          <h2 class="detail-section-title">Value &amp; history</h2>
+          <p class="pd-source-badge" data-pd-source="avm">Demo data — add API key in api-config.js</p>
+          <div class="stat-grid">
+            <div><strong data-pd-avm-mid>$752,000</strong><span>Estimated value</span></div>
+            <div><strong data-pd-avm-range>$735K – $770K</strong><span>Estimate range</span></div>
+            <div><strong data-pd-last-sale-price>$612,000</strong><span>Last sold (<span data-pd-last-sale-year>2019</span>)</span></div>
+            <div><strong data-pd-tax-assessment>$620,000</strong><span>Tax assessment</span></div>
+            <div><strong data-pd-tax-annual>$7,840</strong><span>Annual taxes</span></div>
+          </div>
+
+          <h2 class="detail-section-title">Walkability &amp; transit</h2>
+          <p class="pd-source-badge" data-pd-source="walk">Demo data — add API key in api-config.js</p>
+          <div class="stat-grid">
+            <div><strong data-pd-walk-score>92</strong><span>Walk Score</span></div>
+            <div><strong data-pd-transit-score>64</strong><span>Transit Score</span></div>
+            <div><strong data-pd-bike-score>78</strong><span>Bike Score</span></div>
+          </div>
+
+          <h2 class="detail-section-title">Neighborhood at a glance</h2>
+          <p class="pd-source-badge" data-pd-source="census">Loading from US Census…</p>
+          <div class="stat-grid">
+            <div><strong data-pd-median-income>$94,000</strong><span>Median household income</span></div>
+            <div><strong data-pd-median-home-value>$682,000</strong><span>Median home value (zip)</span></div>
+            <div><strong data-pd-population>18,420</strong><span>Population (zip)</span></div>
+          </div>
+
+          <h2 class="detail-section-title">Within a 10-minute walk</h2>
+          <p class="pd-source-badge" data-pd-source="nearby">Loading from OpenStreetMap…</p>
+          <div class="stat-grid">
+            <div><strong data-pd-nearby-food>14</strong><span>Cafés &amp; restaurants</span></div>
+            <div><strong data-pd-nearby-grocery>4</strong><span>Grocery / convenience</span></div>
+            <div><strong data-pd-nearby-parks>3</strong><span>Parks</span></div>
+            <div><strong data-pd-nearby-schools>2</strong><span>Schools</span></div>
+            <div><strong data-pd-nearby-transit>6</strong><span>Transit stops</span></div>
+          </div>
+
           <h2 class="detail-section-title">Location</h2>
           <p>Midtown Atlanta is the city's cultural and commercial heart — a dense, walkable neighborhood bounded by Piedmont Park to the east and the Connector to the west. The home is a five-minute walk to the park, ten minutes to the High Museum, and a short drive to Georgia Tech, Emory, and downtown.</p>
         </div>
 
-        <aside class="agent-card">
+        <aside class="agent-card" id="showing-form">
           <div class="agent-avatar" aria-hidden="true">JS</div>
           <h3 class="agent-name"><span data-brand-agent>Joshua Song</span></h3>
           <p class="agent-role">REALTOR® · <span data-brand-brokerage>Red 1 Realty</span></p>
-          <p class="agent-note">Schedule a private showing or request more details — typically reply within an hour.</p>
+          <p class="agent-note">Schedule a private showing — typically a reply within an hour on weekdays.</p>
           <form class="form form-spaced" data-contact-form>
             <input type="hidden" name="listing" value="1240 Piedmont Ave NE" />
+            <input type="hidden" name="form_type" value="showing-request" />
             <div class="field"><label for="d-name">Name</label><input id="d-name" name="name" required /></div>
             <div class="field"><label for="d-email">Email</label><input id="d-email" type="email" name="email" required /></div>
             <div class="field"><label for="d-phone">Phone</label><input id="d-phone" type="tel" name="phone" /></div>
-            <div class="field"><label for="d-msg">Message</label><textarea id="d-msg" name="message" rows="3" placeholder="I'd like to see this home this weekend…"></textarea></div>
-            <button class="btn btn-primary" type="submit">Request a showing</button>
+            <div class="showing-row">
+              <div class="field"><label for="d-date">Preferred date</label><input id="d-date" type="date" name="preferred_date" /></div>
+              <div class="field"><label for="d-time">Time</label>
+                <select id="d-time" name="preferred_time">
+                  <option value="">Any time</option>
+                  <option>Morning (9–12)</option>
+                  <option>Afternoon (12–4)</option>
+                  <option>Evening (4–7)</option>
+                </select>
+              </div>
+            </div>
+            <div class="field"><label for="d-msg">Anything else?</label><textarea id="d-msg" name="message" rows="3" placeholder="I'm flexible — would also love to see comparable listings nearby."></textarea></div>
+            <button class="btn btn-primary" type="submit">Request showing</button>
             <p class="form-status" data-form-status hidden></p>
           </form>
           <p class="agent-meta">Or call <a data-brand-phone href="#"></a> · <a data-brand-email href="#"></a></p>
@@ -161,5 +216,6 @@
   <script src="../../assets/js/api-config.js"></script>
   <script src="../../assets/js/main.js" defer></script>
   <script src="../../assets/js/listings.js" defer></script>
+  <script src="../../assets/js/property-data.js" defer></script>
 </body>
 </html>

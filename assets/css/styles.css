@@ -1444,6 +1444,132 @@ body.inner-page { padding-top: var(--nav-height); }
   .reveal { opacity: 1; transform: none; }
 }
 
+/* ---------- Reviews / testimonials grid ---------- */
+.reviews-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.75rem;
+  margin-top: 2.5rem;
+}
+.review-card {
+  background: var(--bone);
+  border-radius: var(--radius-md);
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.review-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+.review-stars {
+  color: var(--terra);
+  font-size: 1rem;
+  letter-spacing: 0.18em;
+  line-height: 1;
+}
+.review-quote {
+  font-family: var(--font-serif);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  font-style: italic;
+  margin: 0;
+  color: var(--ink);
+}
+.review-author {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+  font-style: normal;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+
+/* ---------- Lead-magnet block ---------- */
+.lead-magnet {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  align-items: center;
+  padding: clamp(2rem, 4vw, 3rem);
+  border-radius: var(--radius-lg, 18px);
+  background: linear-gradient(135deg, var(--bone) 0%, #f0e2d0 100%);
+  margin-top: 2.5rem;
+}
+@media (max-width: 760px) {
+  .lead-magnet { grid-template-columns: 1fr; }
+}
+.lead-magnet h2 { margin-top: 0; }
+.lead-magnet-features {
+  list-style: none;
+  padding: 0;
+  margin: 1.25rem 0 0;
+  display: grid;
+  gap: 0.55rem;
+  font-size: 0.95rem;
+}
+.lead-magnet-features li {
+  position: relative;
+  padding-left: 1.5rem;
+  line-height: 1.45;
+}
+.lead-magnet-features li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.7em;
+  width: 0.7rem;
+  height: 0.12rem;
+  background: var(--terra);
+  border-radius: 1px;
+}
+.lead-magnet-form {
+  background: #fff;
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+.lead-magnet-form .field { margin-bottom: 1rem; }
+.lead-magnet-form .form-status { margin-top: 0.75rem; font-size: 0.9rem; }
+.lead-magnet-form .form-status.success { color: #2f6b46; }
+.lead-magnet-form .form-status.error { color: #8f4a2c; }
+
+/* ---------- Showing form additions ---------- */
+.showing-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+.show-now-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+/* ---------- Property-data source badges ---------- */
+.pd-source-badge {
+  display: inline-block;
+  font-size: 0.68rem;
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-weight: 600;
+  padding: 0.3rem 0.6rem;
+  border-radius: 999px;
+  margin: 0.25rem 0 1rem;
+}
+.pd-source-badge.source-demo {
+  background: rgba(200, 152, 116, 0.12);
+  color: #8f4a2c;
+}
+.pd-source-badge.source-live {
+  background: rgba(50, 130, 80, 0.10);
+  color: #2f6b46;
+}
+
 /* ---------- Print ---------- */
 @media print {
   .site-header, .site-footer, .cta-band, .hero-photo { display: none; }
