@@ -195,7 +195,6 @@ p { margin: 0 0 1em; color: var(--text-soft); }
   justify-content: space-between;
   gap: 1rem;
   flex-wrap: wrap;
-  margin-bottom: 2rem;
 }
 
 .stack-lg { margin-top: clamp(3rem, 6vw, 5rem); }
