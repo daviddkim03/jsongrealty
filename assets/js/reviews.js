@@ -77,6 +77,23 @@
     if (!container) return;
     const limit = parseInt(container.getAttribute("data-reviews-limit"), 10) || REVIEWS.length;
     container.innerHTML = REVIEWS.slice(0, limit).map(reviewCardHTML).join("");
+    triggerReveal(container);
+  }
+
+  function triggerReveal(container) {
+    const els = container.querySelectorAll(".reveal");
+    if (!els.length) return;
+    if ("IntersectionObserver" in window) {
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => {
+          if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+        }),
+        { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      );
+      els.forEach((el) => io.observe(el));
+    } else {
+      els.forEach((el) => el.classList.add("in"));
+    }
   }
 
   function renderFeatured(target) {
