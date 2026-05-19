@@ -760,7 +760,7 @@ body.inner-page { padding-top: var(--nav-height); }
   font-size: 1.625rem;
   font-weight: 500;
   letter-spacing: -0.01em;
-  margin-bottom: 0.25rem;
+  margin-bottom: 0.5rem;
 }
 .property-address {
   color: var(--text-muted);
