@@ -1452,7 +1452,8 @@ body.inner-page { padding-top: var(--nav-height); }
   margin-top: 2.5rem;
 }
 .review-card {
-  background: var(--bone);
+  background: var(--paper);
+  border: 1px solid var(--border);
   border-radius: var(--radius-md);
   padding: 1.75rem;
   display: flex;
