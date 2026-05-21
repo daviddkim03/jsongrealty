@@ -713,6 +713,7 @@ body.inner-page { padding-top: var(--nav-height); }
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 2rem;
 }
+.section-head-row + .property-grid { margin-top: clamp(1.5rem, 3vw, 2.5rem); }
 .property-card {
   background: transparent;
   border-radius: var(--radius-md);
