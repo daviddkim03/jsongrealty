@@ -1,6 +1,6 @@
 # JSong Realty — Website
 
-Static, performance-first real-estate site for **Joshua Song**, REALTOR® with **Red 1 Realty**, Atlanta, GA.
+Static, performance-first real-estate site for **Joshua Song**, REALTOR® with **Keller Williams**, Atlanta, GA.
 Built from the architectural blueprint in `jsongrealty.pdf` — no build step, host anywhere, drop-in API keys when ready.
 
 ---
@@ -105,7 +105,7 @@ For SEO text (title tags, meta descriptions, page headings), do a find-and-repla
 | --- | --- |
 | `Joshua Song` | New name |
 | `JSong Realty` | New brand |
-| `Red 1 Realty` | New brokerage |
+| `Keller Williams Realty` | New brokerage |
 | `Atlanta, GA` | New city |
 
 ---
