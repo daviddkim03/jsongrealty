@@ -30,7 +30,7 @@ window.JSONG_CONFIG = {
   brand: {
     name: "JSong Realty",
     agent: "Joshua Song",
-    brokerage: "Red 1 Realty",
+    brokerage: "Keller Williams Realty",
     city: "Atlanta, GA",
     phone: "470-266-0046",
     email: "joshua@erichongrealty.com",
