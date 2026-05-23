@@ -41,22 +41,70 @@
   const DEMO_CENSUS = { medianIncome: 94000, medianHomeValue: 682000, population: 18420 };
   const DEMO_NEARBY = { food: 14, grocery: 4, parks: 3, schools: 2, transit: 6 };
 
-  /* ---------- RentCast: AVM + public records ---------- */
+  /* ---------- RentCast: AVM (value estimate) + property records (tax/sale history) ----------
+     Two endpoints are needed because /avm/value only returns the value estimate;
+     last-sale price/date and tax data come from /properties. Both fire in parallel.
+     Free tier is 50 calls/month — each property page costs 2 calls (~25 lookups/mo). */
   async function fetchAVM(address) {
     const cfg = CFG.rentcast;
     if (!cfg || !cfg.apiKey || cfg.apiKey.startsWith("YOUR_")) {
       return { ok: false, source: "demo", data: DEMO_AVM };
     }
-    try {
-      const url = `${cfg.baseUrl}/avm/value?address=${encodeURIComponent(address)}`;
-      const res = await fetch(url, { headers: { "X-Api-Key": cfg.apiKey } });
-      if (!res.ok) throw new Error("HTTP " + res.status);
-      const json = await res.json();
-      return { ok: true, source: "rentcast", data: json };
-    } catch (err) {
-      console.warn("[property-data] RentCast failed, using demo:", err.message);
-      return { ok: false, source: "demo", data: DEMO_AVM, error: err.message };
+    const headers = { "X-Api-Key": cfg.apiKey, Accept: "application/json" };
+    const q = encodeURIComponent(address);
+    const get = (path) => fetch(`${cfg.baseUrl}${path}`, { headers });
+
+    const [avmRes, propRes] = await Promise.allSettled([
+      get(`/avm/value?address=${q}`),
+      get(`/properties?address=${q}`),
+    ]);
+
+    const merged = {};
+    let anyLive = false;
+
+    if (avmRes.status === "fulfilled" && avmRes.value.ok) {
+      try {
+        const j = await avmRes.value.json();
+        merged.price = j.price ?? null;
+        merged.priceRangeLow = j.priceRangeLow ?? null;
+        merged.priceRangeHigh = j.priceRangeHigh ?? null;
+        anyLive = true;
+      } catch (err) {
+        console.warn("[property-data] RentCast /avm/value parse failed:", err.message);
+      }
+    } else {
+      console.warn("[property-data] RentCast /avm/value failed:",
+        avmRes.status === "fulfilled" ? "HTTP " + avmRes.value.status : avmRes.reason);
     }
+
+    if (propRes.status === "fulfilled" && propRes.value.ok) {
+      try {
+        const j = await propRes.value.json();
+        const rec = Array.isArray(j) ? j[0] : j;
+        if (rec) {
+          merged.lastSalePrice = rec.lastSalePrice ?? null;
+          merged.lastSaleDate = rec.lastSaleDate ?? null;
+          const latestYear = (obj) =>
+            obj && typeof obj === "object" ? Object.keys(obj).sort().pop() : null;
+          const taxYr = latestYear(rec.taxAssessments);
+          const propYr = latestYear(rec.propertyTaxes);
+          merged.taxAssessment = taxYr ? (rec.taxAssessments[taxYr]?.value ?? null) : null;
+          merged.annualTax = propYr ? (rec.propertyTaxes[propYr]?.total ?? null) : null;
+          anyLive = true;
+        }
+      } catch (err) {
+        console.warn("[property-data] RentCast /properties parse failed:", err.message);
+      }
+    } else {
+      console.warn("[property-data] RentCast /properties failed:",
+        propRes.status === "fulfilled" ? "HTTP " + propRes.value.status : propRes.reason);
+    }
+
+    if (!anyLive) {
+      return { ok: false, source: "demo", data: DEMO_AVM, error: "both-endpoints-failed" };
+    }
+    // Fill any gaps with demo values so partial-success responses don't render "—" mid-section.
+    return { ok: true, source: "rentcast", data: { ...DEMO_AVM, ...merged } };
   }
 
   /* ---------- Walk Score ---------- */
