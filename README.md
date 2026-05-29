@@ -1,152 +1,88 @@
 # JSong Realty — Website
 
-Static, performance-first real-estate site for **Joshua Song**, REALTOR® with **Keller Williams**, Atlanta, GA.
-Built from the architectural blueprint in `jsongrealty.pdf` — no build step, host anywhere, drop-in API keys when ready.
+Real-estate site for **Joshua Song**, REALTOR® with **Keller Williams**, Atlanta, GA.
+
+Static [Astro](https://astro.build/) site. Custom design (warm cream / clay / terra palette, Fraunces serif + Inter sans). Deploys to GitHub Pages.
 
 ---
 
-## File structure
-
-```
-.
-├── index.html                      # Home
-├── about/index.html                # About
-├── listings/
-│   ├── index.html                  # Search + map
-│   └── sample-property/index.html  # Property detail template
-├── buyers/index.html
-├── sellers/index.html
-├── blog/
-│   ├── index.html                  # Blog index
-│   └── sample-post/index.html      # Article template
-├── contact/index.html
-└── assets/
-    ├── css/styles.css              # Design system
-    └── js/
-        ├── api-config.js           # EDIT ME — API keys + contact info
-        ├── main.js                 # Nav, forms, brand auto-fill
-        └── listings.js             # SimplyRETS + Mapbox integration
-```
-
-Each page lives in its own subdirectory so URLs are clean (`/about/`, `/listings/`, etc.) and easy to rearrange without breaking links.
-
----
-
-## Running it
-
-No build step. Just serve the folder:
+## Run it
 
 ```bash
-# From this directory
-python3 -m http.server 8000
-# or
-npx serve .
+./start.sh        # installs deps if needed, then opens http://localhost:4321/
 ```
 
-Then open http://localhost:8000/.
+Or manually:
 
----
-
-## Plug-in API keys (5 minutes)
-
-Open `assets/js/api-config.js` and fill in the following. The site is already wired to consume them.
-
-### 1. SimplyRETS — IDX / MLS listings (recommended)
-
-This is the "organic IDX" approach the blueprint recommends: real, indexable listing pages instead of an iframe.
-
-1. Create an account: https://simplyrets.com/pricing
-2. Copy your **username** and **password** from the dashboard.
-3. Paste into `JSONG_CONFIG.simplyRETS`:
-
-```js
-simplyRETS: {
-  username: "your_simplyrets_username",
-  password: "your_simplyrets_password",
-  baseUrl: "https://api.simplyrets.com",
-  featuredLimit: 3,
-  defaultLimit: 12,
-}
+```bash
+npm install
+npm run dev
 ```
 
-> The site ships with the public `simplyrets / simplyrets` sandbox creds, which return demo listings immediately. Everything works out of the box — swap them for real creds when you're ready.
+## Build
 
-### 2. Mapbox — interactive map on `/listings/`
-
-1. Create a free account: https://account.mapbox.com/
-2. Copy your **Default public token** (`pk.ey...`).
-3. Paste into `JSONG_CONFIG.mapbox.accessToken`.
-
-The `/listings/` page will replace its decorative placeholder with a real, interactive map with viewport-bounds loading (fetches listings visible on-screen only, per the blueprint).
-
-### 3. Contact form endpoint
-
-The contact form logs to console until you add an endpoint. Drop in a Formspree / Basin / Getform endpoint:
-
-```js
-contactForm: {
-  endpoint: "https://formspree.io/f/YOUR_ID",
-}
+```bash
+npm run build     # outputs static site to dist/
+npm run preview   # serves dist/ locally for a final sanity check
 ```
 
-### 4. (Optional) Saleswise / LLM search
+## Deploy (GitHub Pages)
 
-Stubbed in config. When you're ready to enable natural-language search or instant CMAs, flip the `enabled` flag and provide keys. Always proxy the LLM call through your own server — never ship the key in the browser.
-
----
-
-## Swapping realtor info
-
-All brand info (name, phone, email, brokerage, city, Instagram link) pulls from `JSONG_CONFIG.brand` in `api-config.js`. The HTML uses `data-brand-*` attributes that get populated by `main.js` — edit one place, it updates everywhere.
-
-For SEO text (title tags, meta descriptions, page headings), do a find-and-replace across the HTML files:
-
-| Find | Replace with |
-| --- | --- |
-| `Joshua Song` | New name |
-| `JSong Realty` | New brand |
-| `Keller Williams Realty` | New brokerage |
-| `Atlanta, GA` | New city |
+1. Push to GitHub `main`.
+2. Set up a GitHub Actions workflow that runs `npm run build` and deploys `dist/` to the `gh-pages` branch (or use the official `actions/deploy-pages` action).
+3. In repo Settings → Pages → set source to `gh-pages` branch.
+4. `public/CNAME` ensures the custom domain (`jsongrealty.com`) survives every deploy.
 
 ---
 
-## Which API did I pick, and why?
+## File layout
 
-From the plan in the PDF:
+```
+src/
+├── pages/
+│   ├── index.astro              # /
+│   ├── about/index.astro        # /about/
+│   ├── buyers/index.astro       # /buyers/
+│   ├── sellers/index.astro      # /sellers/
+│   ├── contact/index.astro      # /contact/
+│   ├── listings/index.astro     # /listings/  — FMLS Matrix IDX iframe
+│   └── blog/index.astro         # /blog/
+└── layouts/
+    └── Layout.astro             # HTML shell, header, footer, font loading
 
-- **SimplyRETS** was chosen over raw RESO, Showcase IDX, or legacy iframe plugins because it exposes a single REST API across every MLS board, ships a public sandbox (so the site works *immediately*), and returns data in a shape that renders to indexable DOM — the single biggest SEO lever vs. kw.com-style iframes. (See rows 11–15 of the Works Cited in the blueprint.)
-- **Mapbox GL JS** over Google Maps or Leaflet because it supports viewport-bounds loading + marker clustering out of the box, which is the exact pattern the blueprint recommends for the kw.com "clunky map" problem. Free tier is generous for a single-agent site.
-
-If you want to switch later, both are isolated behind thin wrappers in `assets/js/listings.js` — swap one function and the rest of the site doesn't care.
-
----
-
-## Hosting
-
-Any static host works:
-
-- **Netlify** — drag this folder onto the Netlify dashboard.
-- **Vercel** — `vercel deploy` from this directory.
-- **Cloudflare Pages** — connect a GitHub repo.
-- **GitHub Pages** — push to `gh-pages` branch.
-- **S3 + CloudFront** — for more control.
-
-All routes are `/section/index.html` so "pretty URLs" work out of the box with any of the above.
-
----
-
-## Accessibility, performance, privacy — defaults already in place
-
-- Semantic HTML: `<header>`, `<nav>`, `<main>` sections, `<footer>`, `<article>`, `<aside>`.
-- Keyboard-navigable; focus rings preserved; ARIA labels on icon-only buttons.
-- Prefers-reduced-motion honored.
-- System-font fallback if Google Fonts are blocked.
-- Responsive breakpoints: mobile-first, nav collapses under 880px.
-- Zero tracking scripts by default. Add your own analytics if you want (PostHog, Plausible, GA4 — your call).
-- Contact form never logs sensitive info in production (endpoint is HTTPS Formspree-style).
+public/
+├── CNAME                        # jsongrealty.com
+└── assets/
+    ├── css/styles.css           # Design system (1,580 lines, tokens + components)
+    └── js/
+        ├── api-config.js        # Brand info (name, phone, email)
+        ├── main.js              # Nav, forms, brand auto-fill
+        ├── reviews.js           # Reviews grid hydration
+        └── lead-magnet.js       # Buyer/Seller guide forms
+```
 
 ---
 
-## Questions
+## Listings — current state
 
-Anything unclear, reach me in the chat and I'll adjust.
+`/listings/` embeds the FMLS Matrix IDX (`matrix.fmlsd.mlsmatrix.com/Matrix/public/IDX.aspx?idx=cde7311d`) as an iframe.
+
+This is a temporary measure. FMLS may issue updated embed code or (less likely) a data-feed API. When they do, swap the iframe in `src/pages/listings/index.astro` for the new integration. The rest of the page (header, market pills, CTA band, footer) stays the same.
+
+---
+
+## Edit brand info
+
+Phone, email, agent name, brokerage, Instagram, license — all live in `public/assets/js/api-config.js`. Edit there; `main.js` populates every `data-brand-*` attribute across the site.
+
+For SEO text (titles, meta descriptions, headings), edit the individual `.astro` pages.
+
+---
+
+## Defaults already in place
+
+- Semantic HTML, keyboard-navigable, ARIA labels on icon-only buttons
+- `prefers-reduced-motion` honored
+- Responsive: mobile-first, nav collapses under 880px
+- Zero tracking by default — add analytics yourself if needed
+- All routes use `/section/` trailing slash

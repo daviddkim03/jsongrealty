@@ -1,0 +1,137 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="JSong Realty — Joshua Song | Atlanta Real Estate with Keller Williams Realty"
+  description="Joshua Song is an Atlanta REALTOR® with Keller Williams Realty. Intown neighborhoods, Buckhead, and the broader metro — handled with care and clear data."
+  ogTitle="JSong Realty — Atlanta Real Estate with Joshua Song"
+  ogDescription="Intown Atlanta real estate, handled with precision."
+  bodyClass="has-hero"
+  headerClass="on-hero"
+>
+  <section class="hero">
+    <div class="hero-photo" style="background-image:url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1920&q=80');"></div>
+    <div class="container">
+      <div class="reveal max-hero-copy">
+        <span class="hero-eyebrow">Atlanta · Intown &amp; Beyond</span>
+        <h1>A home isn't just an address — <em>it's a decision.</em></h1>
+        <p class="lead">Joshua Song is an Atlanta REALTOR® with <span data-brand-brokerage>Keller Williams Realty</span>. Data-driven searches, straight answers, and a calm hand from the first showing to the closing table.</p>
+
+        <form class="search-bar" role="search" aria-label="Search homes" action="/listings/">
+          <input type="search" name="q" placeholder='Try: "3BR with a yard under $600k in Grant Park"' aria-label="Search homes" />
+          <button class="btn btn-accent" type="submit">Search</button>
+        </form>
+        <div class="search-hints" aria-hidden="true">
+          <span>Midtown</span><span>Inman Park</span><span>Buckhead</span><span>Decatur</span><span>Virginia-Highland</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-meta" aria-hidden="true">
+      Represented by<strong>Joshua Song, Realtor®</strong>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">Scroll</div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div class="reveal">
+          <span class="eyebrow">Why work with Joshua</span>
+          <h2>A modern standard for an old industry.</h2>
+        </div>
+        <div class="reveal delay-1">
+          <p class="lead">Most agent sites are a stale brokerage template with a photo carousel. This practice is built around data integrity, fast searches, and honest communication — the kind of process that earns repeat clients, not one-time commissions.</p>
+          <a class="btn btn-ghost" href="/about/">More about the approach </a>
+        </div>
+      </div>
+
+      <div class="grid grid-3 stack-lg">
+        <div class="feature reveal">
+          <span class="feature-num">01</span>
+          <h3>Accurate, indexed search</h3>
+          <p>Real listings from the MLS — not iframes. Every property gets a real page you can bookmark, share, and revisit.</p>
+        </div>
+        <div class="feature reveal delay-1">
+          <span class="feature-num">02</span>
+          <h3>Verified property data</h3>
+          <p>Square footage, tax history, and school zones cross-checked before you ever schedule a showing.</p>
+        </div>
+        <div class="feature reveal delay-2">
+          <span class="feature-num">03</span>
+          <h3>Responsive by default</h3>
+          <p>Texts and emails answered in under an hour on weekdays — no unread inbox theater.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="container">
+      <div class="section-head-row reveal">
+        <div>
+          <span class="eyebrow">Currently on the market</span>
+          <h2 class="mb-0">Featured listings</h2>
+        </div>
+        <a class="btn btn-outline" href="/listings/">View all listings </a>
+      </div>
+      <div class="property-grid" data-featured-listings>
+        <noscript>
+          <p>Enable JavaScript to browse active listings, or <a href="/contact/">contact Joshua</a> for a curated list.</p>
+        </noscript>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="split">
+        <div class="reveal media-stack">
+          <img
+            src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?auto=format&fit=crop&w=900&q=80"
+            alt="Atlanta Intown street with craftsman homes"
+            class="media-frame"
+            loading="lazy"
+          />
+          <div class="media-note media-note-home">
+            <span class="handwritten">Atlanta native.</span>
+            <p class="media-note-text">Working these streets since 2017.</p>
+          </div>
+        </div>
+        <div class="reveal delay-1">
+          <span class="eyebrow">About Joshua</span>
+          <h2>Atlanta roots. <span class="serif-italic">Analytical eye.</span></h2>
+          <p>I grew up navigating these neighborhoods and I work them the same way a careful engineer works a hard problem — with research, reps, and respect for your time. Whether you're buying your first condo Downtown or selling a family home in Buckhead, my job is to give you the numbers, the options, and a clean path forward.</p>
+          <p>I'm licensed in Georgia and affiliated with <strong data-brand-brokerage>Keller Williams Realty</strong>.</p>
+          <div class="hero-cta cta-gap-md">
+            <a class="btn btn-primary" href="/about/">More about Joshua</a>
+            <a class="btn btn-ghost" href="/contact/">Get in touch </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="container">
+      <div class="section-intro reveal">
+        <span class="eyebrow">Client reviews</span>
+        <h2>What people say.</h2>
+      </div>
+      <div class="reviews-grid" data-reviews-grid data-reviews-limit="3"></div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <span class="eyebrow eyebrow-light">Let's talk</span>
+          <h2>Ready to start?</h2>
+          <p>A quick conversation costs nothing and usually saves weeks of wandering Zillow.</p>
+        </div>
+        <a class="btn btn-accent btn-lg" href="/contact/">Schedule a call</a>
+      </div>
+    </div>
+  </section>
+</Layout>

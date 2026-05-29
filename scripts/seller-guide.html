@@ -1,0 +1,962 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>The Atlanta Seller's Guide — Joshua Song · JSong Realty</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,300..700&family=Inter:wght@400;500;600;700&family=Caveat:wght@500;600&display=swap" />
+<style>
+  :root {
+    --cream: #f6f1e8;
+    --paper: #fbf8f2;
+    --bone: #ece4d3;
+    --ink: #1f1b16;
+    --ink-soft: #3a332a;
+    --ink-muted: #6b5f50;
+    --terra: #b5623c;
+    --terra-dark: #8f4a2c;
+    --rule: #d8cdb5;
+
+    --font-sans: "Inter", -apple-system, system-ui, sans-serif;
+    --font-serif: "Fraunces", Georgia, serif;
+    --font-hand: "Caveat", cursive;
+  }
+
+  @page {
+    size: 8.5in 11in;
+    margin: 0;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 8.5in;
+    height: 11in;
+    padding: 0.85in 0.9in 1.05in;
+    page-break-after: always;
+    position: relative;
+    overflow: hidden;
+    background: var(--paper);
+  }
+
+  .page:last-child { page-break-after: auto; }
+
+  .page-num {
+    position: absolute;
+    bottom: 0.4in;
+    right: 0.9in;
+    font-family: var(--font-serif);
+    font-size: 10pt;
+    color: var(--ink-muted);
+    letter-spacing: 0.04em;
+  }
+
+  .page-folio {
+    position: absolute;
+    bottom: 0.4in;
+    left: 0.9in;
+    font-family: var(--font-sans);
+    font-size: 8.5pt;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+  }
+
+  .cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.1in 0.9in 1in;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 11in;
+  }
+
+  .cover-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    font-family: var(--font-sans);
+    font-size: 9pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(251, 248, 242, 0.62);
+  }
+
+  .cover-mark {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 18pt;
+    color: var(--paper);
+  }
+
+  .cover-mark .accent { color: var(--terra); }
+
+  .cover-title {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 78pt;
+    line-height: 0.95;
+    letter-spacing: -0.02em;
+    color: var(--paper);
+    margin: 0;
+  }
+
+  .cover-title .italic {
+    font-style: italic;
+    color: var(--terra);
+    font-weight: 400;
+  }
+
+  .cover-subtitle {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18pt;
+    color: rgba(251, 248, 242, 0.78);
+    margin-top: 0.5in;
+    max-width: 5in;
+    line-height: 1.35;
+  }
+
+  .cover-bottom {
+    border-top: 1px solid rgba(251, 248, 242, 0.18);
+    padding-top: 0.3in;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    font-family: var(--font-sans);
+    font-size: 10pt;
+    color: rgba(251, 248, 242, 0.78);
+  }
+
+  .cover-bottom .author {
+    font-family: var(--font-serif);
+    font-size: 13pt;
+    color: var(--paper);
+  }
+
+  .cover-bottom .author small {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 9pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(251, 248, 242, 0.55);
+    margin-top: 4pt;
+  }
+
+  .runner {
+    position: absolute;
+    top: 0.45in;
+    left: 0.9in;
+    right: 0.9in;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.16in;
+    font-family: var(--font-sans);
+    font-size: 8.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  .runner .runner-section { color: var(--terra-dark); font-weight: 600; }
+
+  .section-number {
+    font-family: var(--font-serif);
+    font-size: 11pt;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--terra);
+    margin: 0 0 0.15in;
+    font-weight: 600;
+  }
+
+  .section-h1 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 34pt;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.2in;
+    color: var(--ink);
+    max-width: 6in;
+  }
+
+  .section-h1 .italic { font-style: italic; color: var(--terra-dark); font-weight: 400; }
+
+  .lead {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 15pt;
+    line-height: 1.35;
+    color: var(--ink-soft);
+    max-width: 5.6in;
+    margin: 0 0 0.25in;
+  }
+
+  h2.h2 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 16pt;
+    line-height: 1.2;
+    margin: 0.18in 0 0.08in;
+    color: var(--ink);
+  }
+
+  h3.h3 {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    font-size: 10.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    margin: 0.16in 0 0.06in;
+    color: var(--terra-dark);
+  }
+
+  p {
+    font-size: 10pt;
+    line-height: 1.5;
+    margin: 0 0 0.09in;
+    color: var(--ink-soft);
+    max-width: 5.8in;
+  }
+
+  p.intro { font-size: 11pt; color: var(--ink); }
+
+  ul, ol {
+    font-size: 10pt;
+    line-height: 1.5;
+    color: var(--ink-soft);
+    padding-left: 1.1em;
+    margin: 0 0 0.12in;
+    max-width: 5.8in;
+  }
+
+  li { margin-bottom: 0.04in; }
+  li strong { color: var(--ink); font-weight: 600; }
+
+  .pull {
+    border-left: 2px solid var(--terra);
+    padding: 0.04in 0 0.04in 0.22in;
+    margin: 0.18in 0;
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.35;
+    color: var(--ink);
+    max-width: 5.5in;
+  }
+
+  .callout {
+    background: var(--bone);
+    border-left: 3px solid var(--terra);
+    padding: 0.18in 0.24in;
+    margin: 0.18in 0;
+    border-radius: 2pt;
+  }
+
+  .callout-label {
+    font-family: var(--font-sans);
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    color: var(--terra-dark);
+    font-weight: 600;
+    margin-bottom: 0.06in;
+  }
+
+  .callout p { color: var(--ink); margin-bottom: 0.06in; max-width: none; }
+  .callout p:last-child { margin-bottom: 0; }
+
+  table.cma {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 9.5pt;
+    margin-top: 0.1in;
+  }
+
+  table.cma th, table.cma td {
+    text-align: left;
+    padding: 5pt 10pt;
+    border-bottom: 1px solid var(--rule);
+    vertical-align: top;
+    color: var(--ink-soft);
+  }
+
+  table.cma th {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 8pt;
+    letter-spacing: 0.12em;
+    color: var(--terra-dark);
+    border-bottom: 1.5px solid var(--ink);
+    background: var(--bone);
+  }
+
+  table.cma td.neighborhood {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    color: var(--ink);
+    font-size: 10pt;
+  }
+
+  .toc-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    counter-reset: toc;
+    max-width: 6in;
+  }
+
+  .toc-list li {
+    counter-increment: toc;
+    display: flex;
+    align-items: baseline;
+    padding: 0.14in 0;
+    border-bottom: 1px solid var(--rule);
+    font-family: var(--font-serif);
+    font-size: 13pt;
+    color: var(--ink);
+  }
+
+  .toc-list li::before {
+    content: counter(toc, decimal-leading-zero);
+    font-family: var(--font-sans);
+    font-size: 9pt;
+    letter-spacing: 0.16em;
+    color: var(--terra);
+    font-weight: 600;
+    margin-right: 0.3in;
+    min-width: 0.5in;
+  }
+
+  .toc-list .dots {
+    flex: 1;
+    border-bottom: 1px dotted var(--rule);
+    margin: 0 0.18in 4pt;
+    height: 1px;
+  }
+
+  .toc-list .pg {
+    font-family: var(--font-sans);
+    font-size: 10pt;
+    color: var(--ink-muted);
+    min-width: 0.4in;
+    text-align: right;
+  }
+
+  .check { list-style: none; padding: 0; max-width: 5.8in; }
+  .check li {
+    padding-left: 0.32in;
+    position: relative;
+    margin-bottom: 0.1in;
+    line-height: 1.5;
+  }
+  .check li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 4pt;
+    width: 12pt;
+    height: 12pt;
+    border: 1.2pt solid var(--ink-soft);
+    border-radius: 2pt;
+    background: var(--paper);
+  }
+
+  .stat-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.3in;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    padding: 0.22in 0;
+    margin: 0.25in 0;
+  }
+
+  .stat-row .stat strong {
+    display: block;
+    font-family: var(--font-serif);
+    font-size: 32pt;
+    font-weight: 300;
+    color: var(--terra-dark);
+    line-height: 1;
+  }
+
+  .stat-row .stat span {
+    display: block;
+    font-family: var(--font-sans);
+    font-size: 9pt;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--ink-muted);
+    margin-top: 6pt;
+  }
+
+  .worksheet-row {
+    display: grid;
+    grid-template-columns: 1.7in 1fr;
+    gap: 0.2in;
+    padding: 0.09in 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 10pt;
+    align-items: center;
+  }
+  .worksheet-row .label {
+    font-family: var(--font-sans);
+    font-weight: 600;
+    color: var(--ink);
+    font-size: 9.5pt;
+  }
+  .worksheet-row .line {
+    border-bottom: 1px solid var(--ink-muted);
+    height: 12pt;
+    width: 100%;
+  }
+
+  .back-cover {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 1.1in 0.9in 1in;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 11in;
+  }
+  .back-cover .signoff {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 32pt;
+    line-height: 1.1;
+    color: var(--paper);
+    max-width: 5.5in;
+  }
+  .back-cover .signoff .italic { font-style: italic; color: var(--terra); }
+  .back-cover .signature {
+    font-family: var(--font-hand);
+    font-size: 30pt;
+    color: var(--paper);
+    margin-top: 0.5in;
+  }
+  .back-cover .contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.3in;
+    border-top: 1px solid rgba(251, 248, 242, 0.18);
+    padding-top: 0.3in;
+    font-family: var(--font-sans);
+    font-size: 10pt;
+    color: rgba(251, 248, 242, 0.85);
+  }
+  .back-cover .contact-grid .label {
+    font-size: 8.5pt;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(251, 248, 242, 0.55);
+    margin-bottom: 4pt;
+  }
+  .back-cover .disclaimer {
+    font-size: 8pt;
+    color: rgba(251, 248, 242, 0.5);
+    line-height: 1.55;
+    max-width: 6.5in;
+    margin-top: 0.4in;
+  }
+</style>
+</head>
+<body>
+
+<div class="page cover">
+  <div class="cover-top">
+    <span>JSong Realty · Atlanta</span>
+    <span>2026 Edition</span>
+  </div>
+  <div>
+    <div class="cover-mark"><span class="accent">J</span>Song <span style="opacity:0.55;">Realty</span></div>
+    <h1 class="cover-title">The Atlanta<br/>Seller's <span class="italic">Guide.</span></h1>
+    <p class="cover-subtitle">A pragmatic playbook for selling your home in 2026 — pricing, prep, marketing, and the math behind the offers.</p>
+  </div>
+  <div class="cover-bottom">
+    <div class="author">
+      Joshua Song
+      <small>REALTOR® · Keller Williams Realty</small>
+    </div>
+    <div>jsongrealty.com</div>
+  </div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>From Joshua</span><span class="runner-section">Introduction</span></div>
+  <p class="section-number">A note before we start</p>
+  <h1 class="section-h1">Most seller guides are <span class="italic">brochures.</span> This one isn't.</h1>
+  <p class="intro">If you've requested a seller's guide before, you know what usually arrives — twenty pages of stock photos, a glossary you didn't need, and three pages on why you should hire that agent. This one is different by design.</p>
+  <p>I wrote it for the way I actually work with clients: a quick, honest read that lets you walk into your first listing conversation already knowing the math. You'll see how prices are set, how offers are weighed, what a real CMA looks like, and which prep moves actually return your money.</p>
+  <p>It's specific to Atlanta. The submarket cheat sheet at the back is the page most of my clients dog-ear. Pricing windows, days-on-market, and buyer behavior all swing hard by neighborhood — what's true in Inman Park is rarely true in Brookhaven, and a guide that won't say so is wasting your time.</p>
+  <div class="callout">
+    <div class="callout-label">A few things this guide is not</div>
+    <p>It is not a substitute for a CMA on your specific home. It is not legal or tax advice. It does not predict where rates or prices are heading — anyone who claims to is selling something.</p>
+  </div>
+  <p>If you want to talk through any of it — your home, your timing, a comp you can't make sense of — text or call. The first conversation is always free and usually shorter than you'd think.</p>
+  <p style="font-family: var(--font-hand); font-size: 24pt; color: var(--ink); margin-top: 0.4in;">— Joshua</p>
+  <div class="page-folio">JSong Realty</div>
+  <div class="page-num">2</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Contents</span><span class="runner-section">Map</span></div>
+  <p class="section-number">Contents</p>
+  <h1 class="section-h1">What's <span class="italic">inside.</span></h1>
+  <p class="lead">Read it cover to cover, or skim to the sections that matter most for where you are right now.</p>
+  <ol class="toc-list">
+    <li><span>Before you list — readiness over timing</span><span class="dots"></span><span class="pg">4</span></li>
+    <li><span>Pricing — what your home is actually worth</span><span class="dots"></span><span class="pg">5</span></li>
+    <li><span>Prep &amp; presentation — what moves the needle</span><span class="dots"></span><span class="pg">7</span></li>
+    <li><span>Marketing — how your home gets found</span><span class="dots"></span><span class="pg">9</span></li>
+    <li><span>Showings &amp; feedback loops</span><span class="dots"></span><span class="pg">10</span></li>
+    <li><span>Offers — evaluating beyond the headline price</span><span class="dots"></span><span class="pg">11</span></li>
+    <li><span>Due diligence &amp; repair negotiation</span><span class="dots"></span><span class="pg">13</span></li>
+    <li><span>Closing day — what actually happens</span><span class="dots"></span><span class="pg">14</span></li>
+    <li><span>The Atlanta submarket cheat sheet</span><span class="dots"></span><span class="pg">15</span></li>
+    <li><span>Worksheets — readiness, offer grid</span><span class="dots"></span><span class="pg">16</span></li>
+  </ol>
+  <div class="page-folio">JSong Realty</div>
+  <div class="page-num">3</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 01 · Before You List</span><span class="runner-section">Readiness</span></div>
+  <p class="section-number">Section 01</p>
+  <h1 class="section-h1">Timing matters less than <span class="italic">readiness.</span></h1>
+  <p class="lead">There's a "right" season to list in Atlanta. There's also a "right time for your specific home." When those line up, you get a fast, clean sale. When they don't, the season loses.</p>
+  <h2 class="h2">The Atlanta listing calendar</h2>
+  <p>Atlanta has three viable listing windows. Each has tradeoffs:</p>
+  <ul>
+    <li><strong>March – June.</strong> Strongest by far. Highest buyer volume, best photos (light, foliage), the busiest open-house weekends. Competition for new listings is also highest, so prep has to be tight.</li>
+    <li><strong>September push.</strong> A short, focused window. Buyers who didn't find anything in spring come back motivated. Fewer listings, less noise — good for unique homes that need a slower, more curated approach.</li>
+    <li><strong>October – mid-November.</strong> A real but underrated window. Inventory is thin; serious buyers are still active. Skip if your home photographs poorly without leaves.</li>
+  </ul>
+  <p>The dead window runs from Thanksgiving through mid-January. List only if you have to.</p>
+  <div class="pull">A rushed listing in May usually costs more than a polished one in late September.</div>
+  <h2 class="h2">Five questions to answer honestly</h2>
+  <ol>
+    <li><strong>Is the home photo-ready in its current state, or are you 4–6 weeks of prep away?</strong> The first 14 days drive the entire sale. Listing before you're ready burns the most valuable window.</li>
+    <li><strong>Do you have a place to land?</strong> If you need to buy next, your sale-and-buy bridge matters more than the optimal listing month.</li>
+    <li><strong>What's the smallest acceptable net?</strong> Not list price — net to you, after commission, repairs, and closing.</li>
+    <li><strong>What are you willing to negotiate, and what's a hard line?</strong> Repair credits? Closing date? Occupancy after closing?</li>
+    <li><strong>How much disruption can your household take?</strong> Showings with kids and pets are real. Plan for it, don't suffer through it.</li>
+  </ol>
+  <div class="page-folio">JSong Realty · Section 01</div>
+  <div class="page-num">4</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 02 · Pricing</span><span class="runner-section">Valuation</span></div>
+  <p class="section-number">Section 02</p>
+  <h1 class="section-h1">What your home is <span class="italic">actually worth.</span></h1>
+  <p class="lead">There are three legitimate ways to estimate value. None of them is a Zestimate.</p>
+  <h2 class="h2">The three valuation methods</h2>
+  <h3 class="h3">1. Comparative Market Analysis (CMA)</h3>
+  <p>A CMA is what a working agent prepares before any listing conversation. It uses recent <em>closed</em> sales of similar homes — typically within 0.5 miles, sold in the last 90 days, with comparable beds, baths, square footage, condition, and lot. It's the most accurate non-appraisal estimate available.</p>
+  <h3 class="h3">2. Automated Valuation Model (AVM)</h3>
+  <p>Zestimate, Redfin Estimate, and bank AVMs. They run statistical models on recent sales and tax data. They're improving but still miss in two systematic ways:</p>
+  <ul>
+    <li><strong>Condition and finishes</strong> — they can't see your kitchen. A renovated 1950s bungalow and a deferred-maintenance one look identical to an algorithm.</li>
+    <li><strong>Hyperlocal nuance</strong> — corner lots, traffic noise, school-district lines mid-block, view, train horns. Atlanta has all of these and AVMs miss most of them.</li>
+  </ul>
+  <p>Useful for direction. Useless for setting your list price.</p>
+  <h3 class="h3">3. Appraisal</h3>
+  <p>A licensed appraiser's opinion, ordered by a lender during financing. It uses a similar comp-selection process to a CMA, with stricter rules. You'll see one during the buyer's financing — and it's the number that determines whether the deal closes at the agreed price.</p>
+  <div class="callout">
+    <div class="callout-label">What this means for you</div>
+    <p>Use AVMs to ballpark. Get a real CMA before any serious pricing conversation. The number on your listing agreement should be defensible against a future appraisal — otherwise you'll re-negotiate later anyway.</p>
+  </div>
+  <div class="page-folio">JSong Realty · Section 02</div>
+  <div class="page-num">5</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 02 · Pricing</span><span class="runner-section">Strategy</span></div>
+  <h2 class="h2" style="margin-top:0;">How to read a CMA</h2>
+  <p>A good CMA shows three buckets — active, pending, and closed comps — and tells you why each comp was chosen. Ask:</p>
+  <ul>
+    <li>Why this comp and not the one two blocks over that sold for less?</li>
+    <li>What adjustments were made for square footage, beds, baths, garage, condition?</li>
+    <li>What's the price-per-square-foot range, and where does my home sit in it?</li>
+    <li>What's the days-on-market trend in the last 60 days?</li>
+  </ul>
+  <h2 class="h2">Three pricing strategies</h2>
+  <h3 class="h3">At market</h3>
+  <p>Price within ~1% of your CMA's "most likely sale" number. This is the default and works in most balanced submarkets. Expect 1–3 offers in the first 10 days; closes near list.</p>
+  <h3 class="h3">Slightly under market (the "invite competition" play)</h3>
+  <p>Price 2–4% below your CMA's expected number to engineer a bidding window. Works when (a) you have a desirable home that will photograph well and (b) the submarket has clear pent-up demand. Risk: if you misread demand, you sell at the under-market price.</p>
+  <h3 class="h3">Ambitious</h3>
+  <p>Price 3–5% above CMA. Sometimes justified — unique architecture, premium lot, recent comps haven't caught up. Often not. The first two weeks tell you which it was.</p>
+  <div class="pull">The first 14 days on market produce more than half of all serious buyer activity for a typical Atlanta listing.</div>
+  <h2 class="h2">Why the first 14 days are everything</h2>
+  <p>Every buyer with an MLS alert in your price range and submarket sees your home in the first 48 hours. After that, your audience is whoever is newly entering the market — a much smaller weekly trickle.</p>
+  <p>If you're priced wrong, you've burned the only at-bats that matter. Listings that re-price within 30 days typically sell for 2–4% less than they would have at the corrected price from day one.</p>
+  <h2 class="h2">Price reductions — timing and sizing</h2>
+  <ul>
+    <li><strong>Don't reduce in the first 10 days.</strong> The market hasn't told you anything yet.</li>
+    <li><strong>If you have showings but no offers by day 14, the price is close but not right.</strong> A 2–3% reduction usually solves it.</li>
+    <li><strong>If you have no showings by day 14, the price is materially wrong.</strong> A 5%+ reduction (or a re-list with new photos) is the conversation.</li>
+    <li><strong>Reduce decisively or not at all.</strong> Two $5k cuts read as desperation. One $15k cut reads as a new opportunity.</li>
+  </ul>
+  <div class="page-folio">JSong Realty · Section 02</div>
+  <div class="page-num">6</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 03 · Prep &amp; Presentation</span><span class="runner-section">High-ROI</span></div>
+  <p class="section-number">Section 03</p>
+  <h1 class="section-h1">The seven moves that <span class="italic">pay back.</span></h1>
+  <p class="lead">Most homes need three or four of these — not all seven. Pick the ones that move the needle on yours.</p>
+  <h3 class="h3">1. Interior paint — walls and trim</h3>
+  <p>Single highest-ROI move for most homes. Warm off-whites (BM White Dove, SW Alabaster). Skip accent walls. Fresh paint masks small wall damage and signals "move-in ready."</p>
+  <h3 class="h3">2. Lighting — warmer bulbs, more lumens</h3>
+  <p>Swap every bulb to 2700K, match wattage across rooms, add lamps where rooms photograph dim. Buyers remember dark homes as small.</p>
+  <h3 class="h3">3. Curb appeal — door, mulch, edges</h3>
+  <p>Paint or replace the front door. Refresh mulch. Edge the lawn and walkways. New door hardware. Most tours start at the curb — your first 8 seconds are decided here.</p>
+  <h3 class="h3">4. Declutter to 30% empty</h3>
+  <p>Closets half empty. Counters cleared. Personal photos down. The goal isn't sterility — it's letting buyers project their own life onto the space.</p>
+  <h3 class="h3">5. Deep clean — grout, vents, inside ovens</h3>
+  <p>Hire a professional once. Buyers and inspectors both notice clean. The cost is trivial relative to what dirty signals about deferred maintenance.</p>
+  <h3 class="h3">6. Address obvious deferred maintenance</h3>
+  <p>Stained ceilings patched and painted. Caulk redone. Burned-out bulbs replaced. Sticking doors adjusted. Cheap — and the difference between "well-cared-for" and "neglected."</p>
+  <h3 class="h3">7. Stage the three rooms buyers photograph most</h3>
+  <p>Living room, primary bedroom, kitchen. Full staging is rarely needed in occupied homes — a consultative stager ($300–$600) is the best money in the prep budget.</p>
+  <div class="page-folio">JSong Realty · Section 03</div>
+  <div class="page-num">7</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 03 · Prep &amp; Presentation</span><span class="runner-section">Skip List</span></div>
+  <h2 class="h2" style="margin-top:0;">Three moves to skip</h2>
+  <h3 class="h3">1. Full kitchen renovation</h3>
+  <p>Buyers rarely pay full value for kitchens done by someone else's taste — especially in $500K+ homes where finishes are personal. A $40k kitchen often returns $25k. If the kitchen is dated but functional, leave it. If it's broken, fix what's broken (a single appliance, a chipped countertop) and let buyers imagine their own version.</p>
+  <h3 class="h3">2. Bathroom remodel</h3>
+  <p>Same logic. A new vanity, mirror, light fixture, and fresh paint can transform a tired bathroom for under $1,500. A full gut is rarely worth it pre-sale.</p>
+  <h3 class="h3">3. Landscape overhaul</h3>
+  <p>New trees take years to mature. Curb appeal lives in the first 20 feet — door, mulch, edges, and a clean walkway. Save the rest for the next owner.</p>
+  <h2 class="h2">When to stage — and when not to</h2>
+  <p>Three flavors of staging exist, in increasing cost:</p>
+  <ul>
+    <li><strong>Consultative ($300–600).</strong> A stager walks the house, writes a punch list, you execute. Right for ~80% of occupied homes.</li>
+    <li><strong>Partial ($1–3k).</strong> Stager brings in select pieces — a rug, art, a dining table — to soften rooms that read sparse on camera. Right for upper-end homes or specific weak rooms.</li>
+    <li><strong>Full ($3–10k).</strong> Vacant or near-vacant homes only. Almost always worth it for vacant listings above $600k; rarely worth it below.</li>
+  </ul>
+  <h2 class="h2">The pre-listing inspection question</h2>
+  <p>A pre-listing inspection costs ~$400–$600 and tells you what a buyer's inspector will find. Worth it when:</p>
+  <ul>
+    <li>The home is 30+ years old and you haven't lived in it long.</li>
+    <li>You suspect specific systems are near end-of-life (HVAC, roof, water heater).</li>
+    <li>You want the option to fix issues before listing, on your timeline, with your contractors.</li>
+  </ul>
+  <p>Not worth it when:</p>
+  <ul>
+    <li>The home is newer and well-maintained.</li>
+    <li>You're not going to fix anything found — you'll just be required to disclose it.</li>
+  </ul>
+  <div class="callout">
+    <div class="callout-label">Atlanta-specific note</div>
+    <p>Older intown homes — Inman Park, Va-Hi, Grant Park, parts of Decatur — often have galvanized plumbing, knob-and-tube remnants, or pier-and-beam quirks. A pre-listing inspection here is almost always money well spent.</p>
+  </div>
+  <div class="page-folio">JSong Realty · Section 03</div>
+  <div class="page-num">8</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 04 · Marketing</span><span class="runner-section">Reach</span></div>
+  <p class="section-number">Section 04</p>
+  <h1 class="section-h1">How your home actually <span class="italic">gets sold.</span></h1>
+  <p class="lead">Marketing has two jobs: get the right buyer to schedule a showing, and give them what they need to make an offer with confidence.</p>
+  <h2 class="h2">Photography is non-negotiable</h2>
+  <p>96% of buyers start their search online. The first photo decides whether your listing is opened or scrolled past. The standard is:</p>
+  <ul>
+    <li>Professional architectural photographer, wide-angle, HDR-blended, color-corrected.</li>
+    <li>25–40 final images, edited and sequenced.</li>
+    <li>Twilight exterior shot when the home has good architectural lighting.</li>
+    <li>Drone overhead for lots over 0.4 acres or any home with notable position/lot.</li>
+  </ul>
+  <p>iPhone photos and "I'll touch them up myself" cost more than they save. Always.</p>
+  <h2 class="h2">3D tours and video reels</h2>
+  <p><strong>Matterport (3D walk-through).</strong> Worth it for homes above $500k, vacant homes, and any listing where buyers are likely to be relocating from out of state. Cost: $200–400.</p>
+  <p><strong>60-second reel.</strong> Vertical video, music, cut for social. Reels routinely outperform every other paid placement on Instagram and Meta. Cost: usually bundled with photography for ~$200 extra.</p>
+  <h2 class="h2">MLS — getting the details right</h2>
+  <p>The MLS feeds Zillow, Redfin, Realtor.com, and a dozen smaller portals — mistakes here propagate everywhere. Get the basics right: accurate square footage from county records, verified school zoning (boundaries shift), honest bed/bath counts, and a description written by a person — not all-caps clichés.</p>
+  <h2 class="h2">Open houses — when they earn their keep</h2>
+  <p>Open houses earn their keep in three situations: first-weekend launch, sub-$600k homes in walkable intown neighborhoods, and homes that have sat 30+ days. Otherwise they're mostly social events for neighbors.</p>
+  <div class="page-folio">JSong Realty · Section 04</div>
+  <div class="page-num">9</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 05 · Showings &amp; Feedback</span><span class="runner-section">Live Phase</span></div>
+  <p class="section-number">Section 05</p>
+  <h1 class="section-h1">Showings &amp; <span class="italic">feedback loops.</span></h1>
+  <p class="lead">During the live phase, three things matter: how easy your home is to see, what you do with feedback, and how you stay sane.</p>
+  <h2 class="h2">Lockboxes and showing access</h2>
+  <p>Default to electronic lockbox access (Supra) with mandatory appointment booking. It maximizes showing volume — every hour you're "by appointment only with seller present" is an hour buyers go see something else.</p>
+  <p>Exceptions:</p>
+  <ul>
+    <li>Homes with pets that can't be safely confined for showings.</li>
+    <li>High-value homes ($1.5M+) where curated, accompanied showings are the norm.</li>
+    <li>Tenant-occupied homes (tenants have rights; build a schedule).</li>
+  </ul>
+  <h2 class="h2">Reading showing feedback</h2>
+  <p>Buyer-agent feedback is uneven — some agents write thoughtful notes, some send "thanks!" Patterns matter more than individual comments. Watch for repeated themes after 5+ showings:</p>
+  <ul>
+    <li><strong>"Priced too high" mentioned by 3+ different agents</strong> → real signal. Consider a price adjustment.</li>
+    <li><strong>"Smaller than expected"</strong> → photography or staging issue, often fixable without a price move.</li>
+    <li><strong>"Loved it but not the right fit"</strong> → noise; nothing to act on.</li>
+    <li><strong>Specific maintenance comment from 2+ buyers</strong> → fix it. It will come back in inspection.</li>
+  </ul>
+  <h2 class="h2">The weekly seller update</h2>
+  <p>Every week during the live phase you should get a written update covering: showings booked vs. completed; online traffic (Zillow/Realtor.com/MLS); any offers anticipated; feedback themes; and a clear recommendation for the coming week.</p>
+  <div class="pull">If you can't tell from this week's update what to do next, the update is failing its job.</div>
+  <div class="page-folio">JSong Realty · Section 05</div>
+  <div class="page-num">10</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 06 · Offers</span><span class="runner-section">Decision</span></div>
+  <p class="section-number">Section 06</p>
+  <h1 class="section-h1">Beyond the <span class="italic">headline price.</span></h1>
+  <p class="lead">The best offer isn't always the highest one. It's the one most likely to close, on the timeline you need, with the fewest renegotiation moments along the way.</p>
+  <h2 class="h2">The five dimensions of an offer</h2>
+  <h3 class="h3">1. Price (and net to seller)</h3>
+  <p>Start with price minus commission, repair credits, and closing-cost concessions. A $610k offer with $8k seller credits nets less than a $605k offer with none. Always compare net.</p>
+  <h3 class="h3">2. Financing strength</h3>
+  <p>In rough order from strongest to weakest:</p>
+  <ul>
+    <li><strong>Cash.</strong> Verifiable proof of funds, no appraisal contingency. Strongest by far. Often arrives at a discount and that's the trade.</li>
+    <li><strong>Conventional, 20%+ down, fully underwritten pre-approval</strong> from a known local lender.</li>
+    <li><strong>Conventional, 10–20% down,</strong> pre-approval letter.</li>
+    <li><strong>FHA / VA.</strong> Stronger than reputation suggests, but stricter appraisal standards mean a few specific items (peeling paint, missing handrails) become deal items if your home is older.</li>
+    <li><strong>Pre-qualification</strong> (not pre-approval). Soft. Push for an updated, underwritten letter before accepting.</li>
+  </ul>
+  <h3 class="h3">2025+ note: NAR settlement and buyer-agent compensation</h3>
+  <p>Since the August 2024 NAR settlement changes, buyer-agent compensation is no longer offered through the MLS by default. Buyers and their agents negotiate compensation directly via a written Buyer Brokerage Agreement, and offers may include a request for the seller to pay some or all of that compensation. Treat it as just another negotiable term. The total transaction cost is what matters; how it's labeled doesn't.</p>
+  <h3 class="h3">3. Earnest money</h3>
+  <p>The deposit signals seriousness. Typical in Atlanta is 1–3% of purchase price. Higher earnest money on a competitive offer is a strong commitment signal — buyers risk losing it if they walk for non-contingency reasons.</p>
+  <div class="page-folio">JSong Realty · Section 06</div>
+  <div class="page-num">11</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 06 · Offers</span><span class="runner-section">Decision</span></div>
+  <h3 class="h3">4. Contingencies</h3>
+  <p>Three matter most:</p>
+  <ul>
+    <li><strong>Due Diligence / Inspection.</strong> Typical 7–14 days. Shorter is stronger; under 5 days is rare. Buyer can walk for any reason during this period.</li>
+    <li><strong>Financing.</strong> Typical 21–30 days. Buyer can walk if their loan falls through.</li>
+    <li><strong>Appraisal.</strong> If the appraisal comes in below contract, buyer can renegotiate or walk. Strong offers may include an "appraisal gap" clause where the buyer agrees to bring extra cash up to a stated cap.</li>
+  </ul>
+  <h3 class="h3">5. Closing date and possession</h3>
+  <p>Some sellers need 60 days; some need 14. Some need post-closing occupancy (rent-back). The right offer respects your timeline. A buyer who can flex on dates is often worth a small price concession.</p>
+  <h2 class="h2">Repair credit vs. price reduction</h2>
+  <p>When inspection issues come back, you'll often be asked for one or the other. They're not equivalent:</p>
+  <ul>
+    <li><strong>Repair credit at closing</strong> — reduces buyer's net cash needed, keeps appraised value intact, doesn't hit comps in your neighborhood.</li>
+    <li><strong>Price reduction</strong> — cleaner, but lowers the closed price recorded in the MLS. Future neighbors and appraisers will see it.</li>
+    <li><strong>You-do-the-repairs</strong> — usually the worst option. You take on contractor risk, scheduling, and warranty.</li>
+  </ul>
+  <p>Default to credits in most cases. Use price reductions only when the credit math doesn't work for the buyer's loan.</p>
+  <h2 class="h2">Multiple offers — how to manage</h2>
+  <ul>
+    <li><strong>Set a clear "highest and best" deadline</strong> if you have 3+ competing offers. 24–48 hours is standard.</li>
+    <li><strong>Be honest about whether it's a true multiple-offer situation.</strong> Misrepresenting that to drive bidding can violate Georgia disclosure rules and torpedo trust.</li>
+    <li><strong>Don't shop offers between buyer agents.</strong> Once you've accepted one or countered, you're committed to that conversation until it concludes.</li>
+    <li><strong>Look at terms, not just price.</strong> A $5k-lower offer with a $50k appraisal gap and 5-day due diligence often beats the headline winner.</li>
+  </ul>
+  <div class="page-folio">JSong Realty · Section 06</div>
+  <div class="page-num">12</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 07 · Due Diligence</span><span class="runner-section">Inspection</span></div>
+  <p class="section-number">Section 07</p>
+  <h1 class="section-h1">Due diligence &amp; <span class="italic">repair negotiation.</span></h1>
+  <p class="lead">The contract is signed. Now the home gets inspected — and roughly 70% of deals see a second negotiation here. Knowing what's reasonable saves the deal.</p>
+  <h2 class="h2">What's in a typical inspection report</h2>
+  <p>A standard home inspection covers structure, roof, exterior, plumbing, electrical, HVAC, insulation, interior, and major appliances. Buyers often add specialty inspections:</p>
+  <ul>
+    <li><strong>Sewer scope</strong> — increasingly standard on intown homes 40+ years old. Catches root intrusion in clay sewer lines.</li>
+    <li><strong>Termite/WDO</strong> — required by most lenders.</li>
+    <li><strong>Radon</strong> — recommended in parts of north Georgia.</li>
+    <li><strong>Mold/air quality</strong> — when visible suspicion exists.</li>
+  </ul>
+  <h2 class="h2">The 80/20 of repair requests</h2>
+  <p>Reasonable requests, almost always worth addressing:</p>
+  <ul>
+    <li>Active leaks (plumbing, roof).</li>
+    <li>Safety items — exposed wiring, missing GFCI in wet areas, water heater straps, missing handrails.</li>
+    <li>Major-system failures (HVAC not cooling, water heater leaking).</li>
+    <li>Structural concerns flagged by the inspector with a recommendation to consult a specialist.</li>
+  </ul>
+  <p>Often-unreasonable requests, push back:</p>
+  <ul>
+    <li>Cosmetic items (paint touch-ups, minor caulking, hairline cracks).</li>
+    <li>Items already disclosed and priced into the contract.</li>
+    <li>"Upgrade" requests dressed up as repairs (older system → "needs replacement").</li>
+    <li>Maintenance items that come with home ownership (gutter cleaning, dryer vent).</li>
+  </ul>
+  <h2 class="h2">Appraisal gaps — what to do</h2>
+  <p>If the appraisal comes in below contract, you have three options: reduce price to appraised value, ask the buyer to bring cash to the gap, or split the difference. The right answer depends on the buyer's financing flexibility and the gap size.</p>
+  <div class="page-folio">JSong Realty · Section 07</div>
+  <div class="page-num">13</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 08 · Closing</span><span class="runner-section">Settlement</span></div>
+  <p class="section-number">Section 08</p>
+  <h1 class="section-h1">Closing day, <span class="italic">demystified.</span></h1>
+  <p class="lead">In Georgia, closings are handled at a closing attorney's office. The seller's role is largely paperwork — but a few line items deserve attention.</p>
+  <h2 class="h2">The 10-day countdown</h2>
+  <ul>
+    <li><strong>Day 10:</strong> Final repair confirmations submitted with receipts. Utilities arranged for transfer.</li>
+    <li><strong>Day 7:</strong> Closing disclosure / settlement statement preview from the attorney.</li>
+    <li><strong>Day 3:</strong> Buyer's final walk-through (verify repairs, confirm no new damage).</li>
+    <li><strong>Day 1:</strong> Movers out. Home left in "broom clean" condition. Keys, garage remotes, manuals, and warranties gathered for handoff.</li>
+    <li><strong>Day 0 (closing):</strong> Attorney's office, ~60–90 minutes. Bring ID. Wire transfer confirmation if you're receiving funds by wire.</li>
+  </ul>
+  <h2 class="h2">Reading your settlement statement</h2>
+  <p>Lines that matter, top to bottom: <strong>sale price</strong>; <strong>existing mortgage payoff</strong> (what you owe your lender as of closing); <strong>prorated property taxes and HOA dues</strong> (you owe only for days you owned the home); <strong>commission</strong> (listing side + any seller-paid buyer-side); <strong>title insurance, recording fees, and transfer tax</strong>; and finally <strong>net to seller</strong> — the only number that ultimately matters.</p>
+  <h2 class="h2">Common last-minute issues</h2>
+  <ul>
+    <li><strong>Wire fraud.</strong> Confirm wire instructions by phone (a number you already had on file) the morning of closing. Never wire to email-only instructions.</li>
+    <li><strong>HOA estoppel delays.</strong> If your HOA is slow, start the request 2–3 weeks early.</li>
+    <li><strong>Lender funding.</strong> Buyer's loan usually funds day of; your wire may arrive same-day or next business day.</li>
+    <li><strong>Tax exclusion.</strong> If this was your primary residence 2 of the last 5 years, you likely qualify for the Section 121 capital gains exclusion ($250k single, $500k married). Confirm with your CPA.</li>
+  </ul>
+  <div class="page-folio">JSong Realty · Section 08</div>
+  <div class="page-num">14</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 09 · Atlanta Submarkets</span><span class="runner-section">Cheat Sheet</span></div>
+  <p class="section-number">Section 09</p>
+  <h1 class="section-h1">The Atlanta <span class="italic">cheat sheet.</span></h1>
+  <p class="lead">Typical price bands, DOM patterns, and what buyers actually want. Directional — every street has its own truth.</p>
+  <table class="cma">
+    <thead>
+      <tr>
+        <th>Submarket</th>
+        <th>Typical Price Band</th>
+        <th>DOM Pattern</th>
+        <th>What buyers want</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="neighborhood">Inman Park</td><td>$700k – $1.6M</td><td>10–25 days</td><td>Character, walkability, Beltline proximity</td></tr>
+      <tr><td class="neighborhood">Virginia-Highland</td><td>$650k – $1.4M</td><td>10–30 days</td><td>School zone, lot size, modernized kitchens</td></tr>
+      <tr><td class="neighborhood">Morningside</td><td>$900k – $2M</td><td>15–35 days</td><td>School zone (Morningside ES), original bones</td></tr>
+      <tr><td class="neighborhood">Midtown</td><td>$300k – $1.2M (condo)</td><td>20–45 days</td><td>Building amenities, view, walk score</td></tr>
+      <tr><td class="neighborhood">Old Fourth Ward</td><td>$500k – $1.2M</td><td>10–25 days</td><td>Beltline access, contemporary finishes</td></tr>
+      <tr><td class="neighborhood">Grant Park</td><td>$550k – $1.1M</td><td>15–35 days</td><td>Bungalow character, walkability, park</td></tr>
+      <tr><td class="neighborhood">Buckhead (SFH)</td><td>$900k – $5M+</td><td>30–90+ days</td><td>Lot, schools, finishes, privacy</td></tr>
+      <tr><td class="neighborhood">Brookhaven</td><td>$650k – $1.5M</td><td>20–45 days</td><td>School zone, garage, yard for kids</td></tr>
+      <tr><td class="neighborhood">Decatur (in-city)</td><td>$650k – $1.4M</td><td>10–25 days</td><td>CSD schools, walkability, character</td></tr>
+      <tr><td class="neighborhood">East Atlanta Village</td><td>$400k – $750k</td><td>15–35 days</td><td>Affordability, walk to bars/restaurants</td></tr>
+      <tr><td class="neighborhood">Kirkwood</td><td>$500k – $900k</td><td>15–35 days</td><td>Renovated bungalows, walk to village</td></tr>
+      <tr><td class="neighborhood">West Midtown</td><td>$500k – $1.5M</td><td>20–45 days</td><td>New construction, restaurants, parking</td></tr>
+      <tr><td class="neighborhood">Sandy Springs</td><td>$500k – $1.5M</td><td>20–45 days</td><td>Schools, yard, cul-de-sac, garage</td></tr>
+      <tr><td class="neighborhood">Smyrna / Vinings</td><td>$450k – $1.2M</td><td>20–40 days</td><td>Commute access, schools, value</td></tr>
+    </tbody>
+  </table>
+  <p style="font-size:9pt; color: var(--ink-muted); margin-top: 0.18in; font-style: italic;">Ranges are approximate and current as of early 2026. Submarket-level data shifts every 60 days — ask for a current CMA before relying on these for pricing.</p>
+  <div class="page-folio">JSong Realty · Section 09</div>
+  <div class="page-num">15</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 10 · Worksheets</span><span class="runner-section">Readiness</span></div>
+  <p class="section-number">Section 10 · Worksheet 1</p>
+  <h1 class="section-h1">Pre-listing <span class="italic">readiness check.</span></h1>
+  <p class="lead">Walk through this before your first listing conversation. If you can check every box, you're ready.</p>
+  <ul class="check">
+    <li>I know my <strong>smallest acceptable net</strong> after commission, prep, and closing costs.</li>
+    <li>I have a real <strong>CMA</strong>, not a Zestimate, prepared in the last 14 days.</li>
+    <li>I've identified the <strong>three prep moves</strong> that will most change how my home shows.</li>
+    <li>I have a <strong>4–6 week prep timeline</strong> with target dates for paint, repairs, photo day, and listing date.</li>
+    <li>I know where I'm <strong>landing after the sale</strong> — or have a bridge plan if I need to buy next.</li>
+    <li>I've decided on <strong>showing logistics</strong> (lockbox or accompanied, pets, kids, work hours).</li>
+    <li>I have a <strong>moving plan</strong> with timeline and approximate budget.</li>
+    <li>I've talked to my <strong>CPA</strong> about the Section 121 exclusion or capital gains exposure.</li>
+    <li>I've reviewed and understand the <strong>NAR settlement changes</strong> around buyer-agent compensation.</li>
+    <li>I'm comfortable with my <strong>listing agent's marketing plan</strong> — photography, MLS strategy, weekly reporting cadence.</li>
+  </ul>
+  <h2 class="h2">Stats worth knowing</h2>
+  <div class="stat-row">
+    <div class="stat"><strong>14 days</strong><span>First-window cliff</span></div>
+    <div class="stat"><strong>96%</strong><span>Buyers who start online</span></div>
+    <div class="stat"><strong>~70%</strong><span>Deals with inspection negotiation</span></div>
+  </div>
+  <div class="page-folio">JSong Realty · Section 10</div>
+  <div class="page-num">16</div>
+</div>
+
+<div class="page">
+  <div class="runner"><span>Section 10 · Worksheets</span><span class="runner-section">Offer Grid</span></div>
+  <p class="section-number">Worksheet 2</p>
+  <h1 class="section-h1">Offer <span class="italic">evaluation grid.</span></h1>
+  <p class="lead">Copy this grid for each offer. The one with the highest net <em>and</em> the lowest renegotiation risk is your offer — not always the one with the highest sticker.</p>
+  <div class="worksheet-row"><span class="label">Buyer / Offer #</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Headline price</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">– Seller-paid concessions</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">– Repair credits requested</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">– Buyer-agent comp (if asked)</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">= Estimated net to seller</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Financing type / down %</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Lender (and reputation)</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Earnest money $</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Due diligence period</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Financing contingency</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Appraisal terms / gap</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Closing date / possession</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Risk score 1–5</span><span class="line"></span></div>
+  <div class="worksheet-row"><span class="label">Notes</span><span class="line"></span></div>
+  <div class="page-folio">JSong Realty · Section 10</div>
+  <div class="page-num">17</div>
+</div>
+
+<div class="page back-cover">
+  <div>
+    <p style="font-family: var(--font-sans); font-size: 9pt; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(251,248,242,0.55); margin: 0 0 0.4in;">A note to close</p>
+    <p class="signoff">If any of this leaves you with more <span class="italic">questions than answers</span>, that's the point.</p>
+    <p style="color: rgba(251,248,242,0.78); font-size: 11pt; line-height: 1.6; max-width: 5.5in; margin-top: 0.3in;">No guide can replace a real conversation about your home, your neighborhood, and your timing. The first one is always free and usually shorter than you'd think. Text, call, or email — whichever's easiest.</p>
+    <div class="signature">Joshua</div>
+  </div>
+  <div>
+    <div class="contact-grid">
+      <div>
+        <div class="label">Joshua Song</div>
+        <div>REALTOR® · Keller Williams Realty<br/>Atlanta, GA</div>
+      </div>
+      <div>
+        <div class="label">Reach out</div>
+        <div>jsongrealty.com<br/>@jsongrealty</div>
+      </div>
+    </div>
+    <p class="disclaimer">This guide is general information for Atlanta-area home sellers and is not legal, tax, or financial advice. Market data and rules — including NAR settlement implementation, Georgia disclosure requirements, and Section 121 — change. Confirm specifics with your attorney, CPA, and licensed agent before acting. © 2026 JSong Realty. Joshua Song is a licensed REALTOR® in the State of Georgia.</p>
+  </div>
+</div>
+
+</body>
+</html>

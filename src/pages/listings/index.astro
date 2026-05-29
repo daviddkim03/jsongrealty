@@ -1,0 +1,107 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Atlanta Home Listings — JSong Realty | Joshua Song"
+  description="Search active Atlanta real estate listings — single-family homes, condos, and townhouses from Intown to Buckhead, direct from the MLS."
+>
+  <Fragment slot="head">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.css" rel="stylesheet" />
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.8.0/mapbox-gl.js" is:inline></script>
+  </Fragment>
+
+  <section class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="/">Home</a> &nbsp;/&nbsp; Listings</nav>
+      <span class="eyebrow">Active listings · MLS-connected</span>
+      <h1>Atlanta homes for sale.</h1>
+      <p>Search the full MLS — results update as the market does. Every listing gets its own page; share, bookmark, and come back any time.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+
+      <div class="market-pills" aria-label="Search overview">
+        <div class="market-pill">
+          <strong>Intown-first</strong>
+          <span>Midtown to Decatur</span>
+        </div>
+        <div class="market-pill">
+          <strong>Fresh daily</strong>
+          <span>MLS-synced inventory</span>
+        </div>
+        <div class="market-pill">
+          <strong>Private help</strong>
+          <span>Text for curated matches</span>
+        </div>
+      </div>
+
+      <form class="search-bar search-bar-wide" role="search" aria-label="Search homes">
+        <input type="search" name="q" placeholder='Try: "3BR craftsman with a screened porch under $800k"' aria-label="Search homes" />
+        <button class="btn btn-primary" type="submit">Search</button>
+      </form>
+
+      <div class="listings-toolbar">
+        <div class="filter-chips" role="tablist" aria-label="Property type">
+          <button class="filter-chip active" type="button">All</button>
+          <button class="filter-chip" type="button">Single Family</button>
+          <button class="filter-chip" type="button">Condo</button>
+          <button class="filter-chip" type="button">Townhouse</button>
+          <button class="filter-chip" type="button">New Construction</button>
+          <button class="filter-chip" type="button">Under $500k</button>
+          <button class="filter-chip" type="button">$500k &ndash; $1M</button>
+          <button class="filter-chip" type="button">$1M+</button>
+        </div>
+        <select class="filter-chip filter-select" aria-label="Sort">
+          <option>Sort: Newest</option>
+          <option>Price: Low → High</option>
+          <option>Price: High → Low</option>
+          <option>Largest sqft</option>
+        </select>
+      </div>
+
+      <div class="listings-layout">
+        <div class="property-grid" data-listings-grid>
+          <noscript>
+            <p>Enable JavaScript to browse live MLS listings, or <a href="/contact/">contact Joshua</a> for a curated list.</p>
+          </noscript>
+        </div>
+        <aside class="map-placeholder" data-map aria-label="Map of listings">
+          <div>
+            <strong>Interactive map</strong>
+            Add your Mapbox token in <code>assets/js/api-config.js</code> to activate viewport-bounds loading and clustering.
+          </div>
+        </aside>
+      </div>
+
+      <div class="text-center mt-4">
+        <button class="btn btn-outline">Load more listings</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-muted">
+    <div class="container">
+      <div class="cta-band reveal">
+        <div>
+          <span class="eyebrow eyebrow-light">Private search</span>
+          <h2>Can't find the right home?</h2>
+          <p>Send me what you're looking for — I'll set up a private search and surface off-market options.</p>
+        </div>
+        <a class="btn btn-accent btn-lg" href="/contact/">Request a private search</a>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    document.querySelectorAll(".filter-chip").forEach((chip) => {
+      if (chip.tagName !== "BUTTON") return;
+      chip.addEventListener("click", () => {
+        document.querySelectorAll(".filter-chip").forEach((c) => c.classList.remove("active"));
+        chip.classList.add("active");
+      });
+    });
+  </script>
+</Layout>

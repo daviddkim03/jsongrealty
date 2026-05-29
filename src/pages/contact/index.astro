@@ -1,0 +1,78 @@
+---
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout
+  title="Contact Joshua Song — JSong Realty | Atlanta"
+  description="Get in touch with Joshua Song — Atlanta REALTOR® with Keller Williams Realty. Call, email, or send a message for a private consultation."
+>
+  <section class="page-header">
+    <div class="container">
+      <nav class="breadcrumb"><a href="/">Home</a> &nbsp;/&nbsp; Contact</nav>
+      <span class="eyebrow">Contact</span>
+      <h1>Let's start <span class="serif-italic">a conversation.</span></h1>
+      <p>Share a few details and I'll be in touch — usually within a business day, often much sooner.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="split split-top contact-layout">
+        <div class="reveal panel contact-card">
+          <h2 class="contact-card-title">Direct</h2>
+          <p class="contact-card-intro">The fastest way to reach me is a call or text.</p>
+          <ul class="contact-list">
+            <li>
+              <span class="contact-label">Phone</span>
+              <a data-brand-phone href="#" class="contact-value contact-value-lg"></a>
+            </li>
+            <li>
+              <span class="contact-label">Email</span>
+              <a data-brand-email href="#" class="contact-value"></a>
+            </li>
+            <li>
+              <span class="contact-label">Instagram</span>
+              <a data-brand-instagram href="#" target="_blank" rel="noopener" class="contact-value">@jsongrealty</a>
+            </li>
+            <li>
+              <span class="contact-label">Brokerage</span>
+              <span class="contact-value" data-brand-brokerage>Keller Williams Realty</span>
+            </li>
+            <li>
+              <span class="contact-label">Service area</span>
+              <span class="contact-value">Atlanta metro &amp; Intown</span>
+            </li>
+          </ul>
+          <p class="contact-signature"><span class="signature">Joshua</span></p>
+        </div>
+
+        <div class="reveal delay-1 panel contact-card">
+          <h2 class="contact-card-title">Or send a message</h2>
+          <p class="contact-card-intro">I'll reply within a business day.</p>
+          <form class="form cta-gap-md" data-contact-form>
+            <div class="form-row">
+              <div class="field"><label for="c-first">First name</label><input id="c-first" name="firstName" required /></div>
+              <div class="field"><label for="c-last">Last name</label><input id="c-last" name="lastName" required /></div>
+            </div>
+            <div class="field"><label for="c-email">Email</label><input id="c-email" type="email" name="email" required /></div>
+            <div class="field"><label for="c-phone">Phone</label><input id="c-phone" type="tel" name="phone" /></div>
+            <div class="field">
+              <label for="c-interest">I'm interested in</label>
+              <select id="c-interest" name="interest">
+                <option>Buying a home</option>
+                <option>Selling a home</option>
+                <option>Getting a home valuation (CMA)</option>
+                <option>Investment / rental property</option>
+                <option>Just have a question</option>
+              </select>
+            </div>
+            <div class="field"><label for="c-message">Message</label><textarea id="c-message" name="message" rows="5" placeholder="A line or two about your timeline, neighborhoods, or questions…" required></textarea></div>
+            <button class="btn btn-primary btn-lg" type="submit">Send message</button>
+            <p class="form-status" data-form-status hidden></p>
+            <p class="form-note">Your info stays between us. I don't sell leads, ever.</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
