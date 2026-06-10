@@ -34,9 +34,10 @@ const canonicalUrl = canonical ?? new URL(pathname, Astro.site ?? "https://jsong
   <meta property="og:description" content={ogDescription ?? description} />
   <meta property="og:type" content="website" />
   <link rel="canonical" href={canonicalUrl} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&display=swap" />
   <link rel="stylesheet" href="/assets/css/styles.css" />
   <slot name="head" />
 </head>
@@ -45,6 +46,7 @@ const canonicalUrl = canonical ?? new URL(pathname, Astro.site ?? "https://jsong
   <header class={`site-header ${headerClass}`}>
     <nav class="nav" aria-label="Primary">
       <a href="/" class="brand" aria-label="JSong Realty home">
+        <span class="brand-badge" aria-hidden="true">JS</span>
         <span><span class="brand-mark">JS</span>ong</span>
         <span class="brand-sub">Realty</span>
       </a>
@@ -72,6 +74,7 @@ const canonicalUrl = canonical ?? new URL(pathname, Astro.site ?? "https://jsong
       <div class="footer-grid">
         <div class="footer-brand">
           <a href="/" class="brand" aria-label="JSong Realty home">
+            <span class="brand-badge" aria-hidden="true">JS</span>
             <span><span class="brand-mark">JS</span>ong</span>
             <span class="brand-sub">Realty</span>
           </a>
