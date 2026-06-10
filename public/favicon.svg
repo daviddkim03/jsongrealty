@@ -1,4 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect x="1.5" y="1.5" width="61" height="61" rx="14" fill="#0f0f10" stroke="#c8a468" stroke-width="3"/>
-  <text x="32" y="43" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="30" fill="#c8a468" text-anchor="middle">JS</text>
+  <rect width="64" height="64" rx="12" fill="#0f0f10"/>
+  <rect x="13" y="13" width="38" height="38" transform="rotate(45 32 32)" fill="none" stroke="#c8a468" stroke-width="2"/>
+  <rect x="18" y="18" width="28" height="28" transform="rotate(45 32 32)" fill="none" stroke="#c8a468" stroke-opacity="0.4" stroke-width="1.5"/>
+  <text x="32" y="38.5" font-family="Georgia, 'Times New Roman', serif" font-style="italic" font-size="18" fill="#c8a468" text-anchor="middle">JS</text>
 </svg>
