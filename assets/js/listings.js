@@ -135,7 +135,7 @@
     const photoUrl = (listing.photos && listing.photos[0]) || "";
     const photo = photoUrl
       ? `<img src="${photoUrl}" alt="${addr}" loading="lazy"/>`
-      : `<div style="width:100%;height:100%;background:linear-gradient(135deg,#c89874,#8f4a2c);"></div>`;
+      : `<div style="width:100%;height:100%;background:linear-gradient(135deg,var(--clay),var(--terra));"></div>`;
     const badge = i === 0 ? `<span class="property-badge new">New</span>` : `<span class="property-badge">For sale</span>`;
     return `
       <article class="property-card reveal${i > 0 ? " delay-" + Math.min(i, 3) : ""}">
