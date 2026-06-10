@@ -53,9 +53,9 @@
   --radius-xl: 32px;
 
   /* Fonts */
-  --font-sans: "Instrument Sans", "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-  --font-serif: "Instrument Serif", Georgia, "Times New Roman", serif;
-  --font-hand: "Instrument Serif", Georgia, serif;
+  --font-sans: "Inter", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-serif: "Fraunces", "Cormorant Garamond", Georgia, "Times New Roman", serif;
+  --font-hand: "Caveat", "Fraunces", cursive;
 
   /* Layout */
   --container: 1240px;
@@ -85,6 +85,7 @@ body {
   font-size: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "ss01", "cv11";
   overflow-x: hidden;
 }
 img, svg, video { display: block; max-width: 100%; height: auto; }
@@ -101,10 +102,12 @@ h1, h2, h3, h4 {
   font-weight: 400;
   line-height: 1.05;
   margin: 0 0 0.5em;
-  letter-spacing: -0.015em;
+  letter-spacing: -0.02em;
+  font-variation-settings: "opsz" 144, "SOFT" 50;
 }
 h1 {
-  font-size: clamp(2.5rem, 6vw, 4.75rem);
+  font-size: clamp(2.75rem, 6.5vw, 5.25rem);
+  font-variation-settings: "opsz" 144, "SOFT" 100;
 }
 h2 { font-size: clamp(2rem, 4.2vw, 3.25rem); }
 h3 {
@@ -144,10 +147,9 @@ p { margin: 0 0 1em; color: var(--text-soft); }
 
 .handwritten {
   font-family: var(--font-hand);
-  font-style: italic;
-  font-size: 1.25em;
+  font-size: 1.5em;
   color: var(--terra);
-  font-weight: 400;
+  font-weight: 500;
   line-height: 1;
 }
 
@@ -190,6 +192,7 @@ p { margin: 0 0 1em; color: var(--text-soft); }
   align-items: center;
 }
 .split-top { align-items: start; }
+.split-about { grid-template-columns: 0.75fr 1.25fr; }
 @media (max-width: 880px) { .split { grid-template-columns: 1fr; } }
 
 .section-head-row {
@@ -220,6 +223,11 @@ p { margin: 0 0 1em; color: var(--text-soft); }
   object-fit: cover;
   border-radius: var(--radius-md);
   box-shadow: var(--shadow-lg);
+}
+
+.media-frame-portrait {
+  aspect-ratio: 1 / 1;
+  max-width: 380px;
 }
 
 .media-stack {
@@ -340,7 +348,7 @@ body.inner-page { padding-top: var(--nav-height); }
 .brand {
   font-family: var(--font-serif);
   font-size: 1.625rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.02em;
   display: flex;
   align-items: baseline;
@@ -349,7 +357,7 @@ body.inner-page { padding-top: var(--nav-height); }
 }
 .brand-mark {
   color: var(--terra);
-  font-weight: 400;
+  font-weight: 600;
   font-style: italic;
   transition: color var(--transition);
 }
@@ -577,15 +585,16 @@ body.inner-page { padding-top: var(--nav-height); }
 .hero h1 {
   color: var(--paper);
   margin-bottom: 1.25rem;
-  max-width: 19ch;
+  max-width: 16ch;
   font-weight: 400;
   font-style: italic;
+  font-variation-settings: "opsz" 144, "SOFT" 100, "WONK" 1;
 }
 .hero h1 em {
-  font-style: italic;
+  font-style: normal;
   color: var(--clay);
   font-family: var(--font-hand);
-  font-size: 0.9em;
+  font-size: 0.85em;
   font-weight: 400;
 }
 .hero .lead {
@@ -785,7 +794,7 @@ body.inner-page { padding-top: var(--nav-height); }
 .property-price {
   font-family: var(--font-serif);
   font-size: 1.625rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.01em;
   margin-bottom: 0.25rem;
 }
@@ -848,7 +857,7 @@ body.inner-page { padding-top: var(--nav-height); }
 .feature h3 {
   font-family: var(--font-serif);
   font-size: 1.375rem;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 0.5rem;
 }
 .feature p { color: var(--text-muted); font-size: 0.95rem; margin: 0; line-height: 1.6; }
@@ -930,7 +939,7 @@ body.inner-page { padding-top: var(--nav-height); }
   display: block;
   font-family: var(--font-serif);
   font-size: 1rem;
-  font-weight: 400;
+  font-weight: 500;
   color: var(--text);
 }
 .market-pill span {
@@ -1046,7 +1055,7 @@ body.inner-page { padding-top: var(--nav-height); }
   font-family: var(--font-serif);
   font-style: italic;
   font-size: 1.75rem;
-  font-weight: 400;
+  font-weight: 500;
   margin-bottom: 1rem;
   box-shadow: var(--shadow-sm);
 }
@@ -1064,7 +1073,7 @@ body.inner-page { padding-top: var(--nav-height); }
   display: block;
   font-family: var(--font-serif);
   font-size: 1.875rem;
-  font-weight: 400;
+  font-weight: 500;
   letter-spacing: -0.01em;
   color: var(--ink);
 }
@@ -1141,7 +1150,7 @@ body.inner-page { padding-top: var(--nav-height); }
   padding: 0.1em 0.12em 0 0;
   color: var(--terra);
   font-style: italic;
-  font-weight: 400;
+  font-weight: 500;
 }
 .article p {
   font-size: 1.0625rem;
@@ -1149,7 +1158,7 @@ body.inner-page { padding-top: var(--nav-height); }
   color: var(--text-soft);
 }
 .article h2 { margin-top: 3rem; font-style: italic; font-weight: 400; }
-.article h3 { margin-top: 2.25rem; font-style: italic; font-weight: 400; }
+.article h3 { margin-top: 2.25rem; font-style: italic; font-weight: 500; }
 .article img { border-radius: var(--radius-md); margin: 2.5rem 0; }
 .article-hero {
   aspect-ratio: 16 / 9;
@@ -1363,13 +1372,12 @@ body.inner-page { padding-top: var(--nav-height); }
 /* ---------- Signature flourish ---------- */
 .signature {
   font-family: var(--font-hand);
-  font-style: italic;
-  font-size: 2rem;
+  font-size: 2.5rem;
   color: var(--terra);
   line-height: 1;
   display: inline-block;
-  transform: rotate(-2deg);
-  font-weight: 400;
+  transform: rotate(-3deg);
+  font-weight: 500;
 }
 
 /* ---------- Footer ---------- */
