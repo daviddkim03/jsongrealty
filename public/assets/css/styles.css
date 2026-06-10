@@ -362,39 +362,31 @@ body.inner-page { padding-top: var(--nav-height); }
   transition: color var(--transition);
 }
 .brand-badge {
-  position: relative;
   align-self: center;
-  width: 32px;
-  height: 32px;
-  margin: 0 0.45rem;
   display: inline-flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  gap: 1px;
   flex-shrink: 0;
+  margin-right: 0.15rem;
   color: var(--terra) !important;
+}
+.brand-badge svg {
+  width: 26px;
+  height: 10px;
+  display: block;
+  transition: transform var(--transition);
+}
+.brand-badge-letters {
   font-family: var(--font-serif);
   font-style: italic;
-  font-weight: 500;
-  font-size: 0.95rem;
+  font-weight: 600;
+  font-size: 1.2rem;
   line-height: 1;
-  letter-spacing: 0.03em;
+  letter-spacing: -0.01em;
 }
-.brand-badge::before,
-.brand-badge::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: rotate(45deg);
-  border: 1px solid rgba(200, 164, 104, 0.65);
-  transition: transform var(--transition), border-color var(--transition);
-}
-.brand-badge::after {
-  inset: 4px;
-  border-color: rgba(200, 164, 104, 0.28);
-}
-.brand:hover .brand-badge::before {
-  transform: rotate(45deg) scale(1.08);
-  border-color: rgba(200, 164, 104, 0.95);
+.brand:hover .brand-badge svg {
+  transform: translateY(-1.5px);
 }
 .brand-sub {
   font-size: 0.65rem;
