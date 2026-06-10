@@ -21,6 +21,7 @@ const {
 
 const pathname = Astro.url.pathname;
 const canonicalUrl = canonical ?? new URL(pathname, Astro.site ?? "https://jsongrealty.com").toString();
+const tabTitle = title.split("—")[0].trim();
 ---
 
 <!doctype html>
@@ -28,7 +29,7 @@ const canonicalUrl = canonical ?? new URL(pathname, Astro.site ?? "https://jsong
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>JSong Realty</title>
+  <title>{tabTitle}</title>
   <meta name="description" content={description} />
   <meta property="og:title" content={ogTitle ?? title} />
   <meta property="og:description" content={ogDescription ?? description} />
