@@ -361,33 +361,6 @@ body.inner-page { padding-top: var(--nav-height); }
   font-style: italic;
   transition: color var(--transition);
 }
-.brand-badge {
-  align-self: center;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1px;
-  flex-shrink: 0;
-  margin-right: 0.15rem;
-  color: var(--terra) !important;
-}
-.brand-badge svg {
-  width: 26px;
-  height: 10px;
-  display: block;
-  transition: transform var(--transition);
-}
-.brand-badge-letters {
-  font-family: var(--font-serif);
-  font-style: italic;
-  font-weight: 600;
-  font-size: 1.2rem;
-  line-height: 1;
-  letter-spacing: -0.01em;
-}
-.brand:hover .brand-badge svg {
-  transform: translateY(-1.5px);
-}
 .brand-sub {
   font-size: 0.65rem;
   font-family: var(--font-sans);
