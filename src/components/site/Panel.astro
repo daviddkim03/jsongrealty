@@ -1,0 +1,19 @@
+---
+// Card surface for Astro layouts that wrap islands or slots.
+import { cn } from "@/lib/utils"
+
+interface Props {
+  class?: string
+}
+
+const { class: className } = Astro.props
+---
+
+<div
+  class={cn(
+    "rounded-2xl bg-card text-card-foreground shadow-xs ring-1 ring-foreground/10",
+    className,
+  )}
+>
+  <slot />
+</div>

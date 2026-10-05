@@ -1,8 +1,8 @@
-# JSong Realty — Website
+# JSong Realty
 
-Real-estate site for **Joshua Song**, REALTOR® with **Keller Williams**, Atlanta, GA.
+Website for **Joshua Song**, REALTOR® with **Keller Williams Realty**, Atlanta, GA. Live at [jsongrealty.com](https://jsongrealty.com).
 
-Static [Astro](https://astro.build/) site. Custom design (warm cream / clay / terra palette, Fraunces serif + Inter sans). Deploys to GitHub Pages.
+A static [Astro](https://astro.build/) site styled with [Tailwind CSS](https://tailwindcss.com/) and [shadcn/ui](https://ui.shadcn.com/) (Radix primitives, Neutral base color, dark theme). Headings use Fraunces, body text uses Inter, and icons come from [react-icons](https://react-icons.github.io/react-icons/). Deploys to GitHub Pages.
 
 ---
 
@@ -19,19 +19,20 @@ npm install
 npm run dev
 ```
 
-## Build
+## Scripts
 
-```bash
-npm run build     # outputs static site to dist/
-npm run preview   # serves dist/ locally for a final sanity check
-```
+| Command                | What it does                                        |
+| ---------------------- | --------------------------------------------------- |
+| `npm run dev`          | Dev server at http://localhost:4321/                |
+| `npm run build`        | Static build to `dist/`                             |
+| `npm run preview`      | Serves `dist/` locally for a final check            |
+| `npm run check`        | Type-checks `.astro`, `.ts`, and `.tsx` files       |
+| `npm run format`       | Formats with Prettier (also sorts Tailwind classes) |
+| `npm run format:check` | Verifies formatting without writing                 |
 
 ## Deploy (GitHub Pages)
 
-1. Push to GitHub `main`.
-2. Set up a GitHub Actions workflow that runs `npm run build` and deploys `dist/` to the `gh-pages` branch (or use the official `actions/deploy-pages` action).
-3. In repo Settings → Pages → set source to `gh-pages` branch.
-4. `public/CNAME` ensures the custom domain (`jsongrealty.com`) survives every deploy.
+Pushing to `main` runs `.github/workflows/deploy.yml`, which builds with `withastro/action` and publishes `dist/` to GitHub Pages. `public/CNAME` keeps the custom domain (`jsongrealty.com`) on every deploy.
 
 ---
 
@@ -39,50 +40,55 @@ npm run preview   # serves dist/ locally for a final sanity check
 
 ```
 src/
-├── pages/
-│   ├── index.astro              # /
-│   ├── about/index.astro        # /about/
-│   ├── buyers/index.astro       # /buyers/
-│   ├── sellers/index.astro      # /sellers/
-│   ├── contact/index.astro      # /contact/
-│   ├── listings/index.astro     # /listings/  — FMLS Matrix IDX iframe
-│   └── blog/index.astro         # /blog/
-└── layouts/
-    └── Layout.astro             # HTML shell, header, footer, font loading
+├── config/site.ts           # Brand, contact details, form endpoints, nav links
+├── data/
+│   ├── listings.ts          # Homes shown on / (first three) and /listings/
+│   └── reviews.ts           # Client testimonials (first three are shown)
+├── pages/                   # One .astro file per route, plus 404.astro
+├── layouts/Layout.astro     # HTML shell, SEO meta, header, footer
+├── components/
+│   ├── ui/                  # shadcn/ui components (generated, then owned here)
+│   ├── site/                # Header, footer, and section building blocks
+│   ├── listings/            # Listing cards with a quick-view dialog (island)
+│   └── forms/               # Contact, valuation, and guide forms (islands)
+├── lib/                     # cn(), formatting, and image URL helpers
+├── scripts/                 # Small vanilla scripts: header state, scroll reveal
+└── styles/global.css        # Tailwind entry point and shadcn theme tokens
 
 public/
-├── CNAME                        # jsongrealty.com
+├── CNAME                    # jsongrealty.com
+├── favicon.svg
 └── assets/
-    ├── css/styles.css           # Design system (1,580 lines, tokens + components)
-    └── js/
-        ├── api-config.js        # Brand info (name, phone, email)
-        ├── main.js              # Nav, forms, brand auto-fill
-        ├── reviews.js           # Reviews grid hydration
-        └── lead-magnet.js       # Buyer/Seller guide forms
+    ├── img/                 # Headshot
+    └── guides/              # Seller's guide PDF (built by scripts/build-seller-guide.sh)
 ```
 
 ---
 
-## Listings — current state
+## Editing content
 
-`/listings/` embeds the FMLS Matrix IDX (`matrix.fmlsd.mlsmatrix.com/Matrix/public/IDX.aspx?idx=cde7311d`) as an iframe.
+- **Contact details, brokerage, Instagram:** `src/config/site.ts`. Everything is rendered at build time, so edit and redeploy.
+- **Listings:** `src/data/listings.ts`. The current entries are sample homes; replace them with real listings. `photo` takes an Unsplash photo id or any image URL (or a path under `public/`).
+- **Reviews:** `src/data/reviews.ts`. Home and About show the first three.
+- **Page copy, titles, and meta descriptions:** the matching file in `src/pages/`.
 
-This is a temporary measure. FMLS may issue updated embed code or (less likely) a data-feed API. When they do, swap the iframe in `src/pages/listings/index.astro` for the new integration. The rest of the page (header, market pills, CTA band, footer) stays the same.
+The site has no listing search or MLS integration: listings are a curated, hand-edited set.
+
+## Forms
+
+The contact, home-valuation, and seller's-guide forms POST JSON to the endpoints in `site.forms` (any Formspree, Getform, or Basin style endpoint works). Until an endpoint is set:
+
+- the contact and valuation forms open the visitor's email app with the message pre-filled and addressed to Joshua, so no inquiry is silently dropped;
+- the guide form just downloads the PDF.
+
+A listing's "Request a showing" button links to `/contact/?listing=<id>`, which pre-fills the contact message for that home.
 
 ---
 
-## Edit brand info
+## UI conventions
 
-Phone, email, agent name, brokerage, Instagram, license — all live in `public/assets/js/api-config.js`. Edit there; `main.js` populates every `data-brand-*` attribute across the site.
-
-For SEO text (titles, meta descriptions, headings), edit the individual `.astro` pages.
-
----
-
-## Defaults already in place
-
-- Semantic HTML, keyboard-navigable, ARIA labels on icon-only buttons
-- `prefers-reduced-motion` honored
-- Responsive: mobile-first, nav collapses under 880px
-- Zero tracking by default — add analytics yourself if needed
-- All routes use `/section/` trailing slash
+- **Components** come from shadcn/ui: `npx shadcn@latest add <component>`. This site uses react-icons instead of lucide-react, so after adding a component, swap its `lucide-react` imports for the matching `react-icons/lu` icon (for example `XIcon` becomes `LuX`).
+- **Links that look like buttons** in `.astro` files use `buttonVariants()` on a plain `<a>`. Avoid `<Button asChild>` there: Astro wraps slotted children in an extra element, which breaks Radix's `asChild` and shadcn's direct-child selectors. Compose shadcn components inside `.tsx` files and give them plain props.
+- **Hydration** is opt-in. Only the mobile menu, listing dialogs, and forms ship JavaScript (`client:*`); everything else renders to static HTML.
+- **Theme** is dark-only: `<html class="dark">` with shadcn's Neutral tokens in `src/styles/global.css`.
+- **Accessibility:** semantic landmarks, a skip link, keyboard-friendly Radix dialogs and selects, and `prefers-reduced-motion` turns off the scroll reveal.

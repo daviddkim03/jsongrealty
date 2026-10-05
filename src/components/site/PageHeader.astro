@@ -1,0 +1,33 @@
+---
+import Container from "./Container.astro"
+import { PageBreadcrumb } from "./PageBreadcrumb"
+
+interface Props {
+  /** Label for the current page in the breadcrumb. */
+  current: string
+}
+
+const { current } = Astro.props
+---
+
+<section class="relative isolate overflow-hidden border-b">
+  <div
+    aria-hidden="true"
+    class="bg-grid absolute inset-0 -z-10 mask-[radial-gradient(ellipse_70%_90%_at_100%_0%,black,transparent_70%)]"
+  ></div>
+  <div
+    aria-hidden="true"
+    class="absolute inset-0 -z-10 bg-[radial-gradient(48rem_24rem_at_90%_-20%,oklch(1_0_0/0.07),transparent_70%)]"
+  ></div>
+  <Container class="py-14 sm:py-20 lg:py-24">
+    <PageBreadcrumb current={current} />
+    <h1 class="mt-8 max-w-4xl text-5xl leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl">
+      <slot />
+    </h1>
+    {Astro.slots.has("description") && (
+      <p class="mt-6 max-w-2xl text-lg leading-relaxed text-pretty text-muted-foreground">
+        <slot name="description" />
+      </p>
+    )}
+  </Container>
+</section>

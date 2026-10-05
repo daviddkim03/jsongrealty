@@ -1,91 +1,149 @@
 ---
-import Layout from "../../layouts/Layout.astro";
+import {
+  LuArrowRight,
+  LuBadgeCheck,
+  LuHandshake,
+  LuMessagesSquare,
+} from "react-icons/lu"
+
+import CtaBand from "@/components/site/CtaBand.astro"
+import Eyebrow from "@/components/site/Eyebrow.astro"
+import { FeatureCard } from "@/components/site/FeatureCard"
+import PageHeader from "@/components/site/PageHeader.astro"
+import { ReviewCard } from "@/components/site/ReviewCard"
+import Section from "@/components/site/Section.astro"
+import SectionHeading from "@/components/site/SectionHeading.astro"
+import { buttonVariants } from "@/components/ui/button"
+import { site } from "@/config/site"
+import { reviews } from "@/data/reviews"
+import Layout from "@/layouts/Layout.astro"
+
+const commitments = [
+  {
+    icon: LuBadgeCheck,
+    title: "Verified information, always",
+    description:
+      "Square footage, permitted work, tax history, school zones — verified before we ever book a showing, so every decision is made on facts rather than assumptions.",
+  },
+  {
+    icon: LuMessagesSquare,
+    title: "Responsive communication",
+    description:
+      "Weekday calls, texts, and emails answered within the hour. You'll always know where we stand, what comes next, and why — in plain language.",
+  },
+  {
+    icon: LuHandshake,
+    title: "Principled negotiation",
+    description:
+      "Every negotiation is approached with preparation and composure — protecting your interests at every turn. Strategy first, always.",
+  },
+]
 ---
 
 <Layout
   title="About Joshua Song — JSong Realty | Atlanta REALTOR® with Keller Williams Realty"
   description="Meet Joshua Song — an Atlanta REALTOR® focused on clear data, careful negotiation, and real advocacy for buyers and sellers across Intown and metro Atlanta."
 >
-  <section class="page-header">
-    <div class="container">
-      <nav class="breadcrumb"><a href="/">Home</a> &nbsp;/&nbsp; About</nav>
-      <span class="eyebrow">About</span>
-      <h1>Meet Joshua Song.</h1>
-      <p>A REALTOR® who treats every transaction like the biggest one you'll ever make — because for most people, it is.</p>
-    </div>
-  </section>
+  <PageHeader current="About">
+    Meet Joshua Song.
+    <Fragment slot="description">
+      A REALTOR® who treats every transaction like the biggest one you'll ever
+      make — because for most people, it is.
+    </Fragment>
+  </PageHeader>
 
-  <section class="section">
-    <div class="container">
-      <div class="split split-about">
-        <div class="reveal media-stack">
-          <img src="/assets/img/joshua-portrait.jpg" alt="Joshua Song, REALTOR®" class="media-frame media-frame-portrait" width="600" height="600" loading="lazy" />
-          <div class="media-note media-note-about">
-            <span class="handwritten" style="font-size: 2rem;">Joshua</span>
-            <p class="media-note-kicker">REALTOR® · Keller Williams Realty</p>
-          </div>
-        </div>
-        <div class="reveal delay-1">
-          <span class="eyebrow">The short version</span>
-          <h2>Atlanta roots, <span class="serif-italic">analytical approach.</span></h2>
-          <p>I'm Joshua — an Atlanta REALTOR® with <strong data-brand-brokerage>Keller Williams Realty</strong>. I work across Intown and the broader metro, with a focus on giving clients the same quality of information I'd want if I were sitting on their side of the table.</p>
-          <p>My practice is built on three commitments: verified data, clear communication, and calm, disciplined negotiation. Real estate is deeply personal — my role is to bring order, clarity, and confidence to every step of it.</p>
-          <p>Outside of real estate, you'll find me exploring Atlanta's neighborhoods on foot, supporting the coffee shops of Virginia-Highland, and holding to a simple belief: the best transaction is one both sides feel good about.</p>
-          <div class="hero-cta cta-gap-sm">
-            <a class="btn btn-primary" href="/contact/">Get in touch</a>
-            <a class="btn btn-ghost" href="/listings/">See current listings </a>
-          </div>
+  <Section>
+    <div class="grid items-center gap-16 lg:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] lg:gap-20">
+      <div class="relative mx-auto w-full max-w-sm lg:mx-0" data-reveal>
+        <img
+          src={site.agent.portrait}
+          alt={`${site.agent.name}, ${site.agent.title}`}
+          width="600"
+          height="600"
+          class="aspect-square w-full rounded-2xl object-cover ring-1 ring-foreground/10"
+        />
+        <div class="absolute -bottom-8 left-4 rounded-xl border bg-card/90 px-5 py-4 shadow-2xl shadow-black/50 backdrop-blur-md sm:-left-6">
+          <p class="font-heading text-xl">{site.agent.name}</p>
+          <p class="mt-1 text-xs tracking-[0.12em] text-muted-foreground uppercase">
+            {site.agent.title} · {site.agent.brokerage}
+          </p>
         </div>
       </div>
-    </div>
-  </section>
 
-  <section class="section section-muted">
-    <div class="container">
-      <div class="section-intro reveal">
-        <span class="eyebrow">How I work</span>
-        <h2>Three commitments to every client.</h2>
-      </div>
-      <div class="grid grid-3">
-        <div class="feature reveal">
-          <span class="feature-num">01</span>
-          <h3>Verified information, always</h3>
-          <p>Square footage, permitted work, tax history, school zones — verified before we ever book a showing, so every decision is made on facts rather than assumptions.</p>
+      <div data-reveal style="--reveal-delay: 120ms">
+        <Eyebrow>The short version</Eyebrow>
+        <h2 class="mt-5 text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+          Atlanta roots,{" "}
+          <em class="text-foreground/65">analytical approach.</em>
+        </h2>
+        <div class="mt-6 space-y-4 text-lg leading-relaxed text-muted-foreground">
+          <p>
+            I'm Joshua — an Atlanta REALTOR® with{" "}
+            <strong class="font-medium text-foreground">
+              {site.agent.brokerage}
+            </strong>
+            . I work across Intown and the broader metro, with a focus on giving
+            clients the same quality of information I'd want if I were sitting
+            on their side of the table.
+          </p>
+          <p>
+            My practice is built on three commitments: verified data, clear
+            communication, and calm, disciplined negotiation. Real estate is
+            deeply personal — my role is to bring order, clarity, and confidence
+            to every step of it.
+          </p>
+          <p>
+            Outside of real estate, you'll find me exploring Atlanta's
+            neighborhoods on foot, supporting the coffee shops of
+            Virginia-Highland, and holding to a simple belief: the best
+            transaction is one both sides feel good about.
+          </p>
         </div>
-        <div class="feature reveal delay-1">
-          <span class="feature-num">02</span>
-          <h3>Responsive communication</h3>
-          <p>Weekday calls, texts, and emails answered within the hour. You'll always know where we stand, what comes next, and why — in plain language.</p>
-        </div>
-        <div class="feature reveal delay-2">
-          <span class="feature-num">03</span>
-          <h3>Principled negotiation</h3>
-          <p>Every negotiation is approached with preparation and composure — protecting your interests at every turn. Strategy first, always.</p>
+        <div class="mt-10 flex flex-wrap gap-3">
+          <a href="/contact/" class={buttonVariants({ size: "xl" })}>
+            Get in touch
+          </a>
+          <a
+            href="/listings/"
+            class={buttonVariants({ variant: "ghost", size: "xl" })}
+          >
+            See current listings
+            <LuArrowRight aria-hidden="true" data-icon="inline-end" />
+          </a>
         </div>
       </div>
     </div>
-  </section>
+  </Section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section-intro reveal">
-        <span class="eyebrow">Client reviews</span>
-        <h2>What clients say.</h2>
-      </div>
-      <div class="reviews-grid" data-reviews-grid data-reviews-limit="3"></div>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="cta-band reveal">
-        <div>
-          <span class="eyebrow eyebrow-light">Let's talk</span>
-          <h2>About your next move.</h2>
-          <p>Whether you're buying, selling, or simply curious about your home's value — the conversation is always welcome.</p>
+  <Section tone="muted">
+    <SectionHeading eyebrow="How I work">
+      Three commitments to every client.
+    </SectionHeading>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {commitments.map((commitment, i) => (
+        <div data-reveal style={`--reveal-delay: ${i * 100}ms`}>
+          <FeatureCard {...commitment} />
         </div>
-        <a class="btn btn-accent btn-lg" href="/contact/">Start a conversation</a>
-      </div>
+      ))}
     </div>
-  </section>
+  </Section>
+
+  <Section>
+    <SectionHeading eyebrow="Client reviews">What clients say.</SectionHeading>
+    <div class="mt-12 grid gap-6 md:grid-cols-3">
+      {reviews.slice(0, 3).map((review, i) => (
+        <div data-reveal style={`--reveal-delay: ${i * 100}ms`}>
+          <ReviewCard review={review} />
+        </div>
+      ))}
+    </div>
+  </Section>
+
+  <CtaBand
+    tone="muted"
+    eyebrow="Let's talk"
+    title="About your next move."
+    description="Whether you're buying, selling, or simply curious about your home's value — the conversation is always welcome."
+    cta={{ href: "/contact/", label: "Start a conversation" }}
+  />
 </Layout>

@@ -1,0 +1,26 @@
+---
+import { cn } from "@/lib/utils"
+import Container from "./Container.astro"
+
+interface Props {
+  id?: string
+  /** "muted" lifts the band slightly off the page background. */
+  tone?: "default" | "muted"
+  class?: string
+}
+
+const { id, tone = "default", class: className } = Astro.props
+---
+
+<section
+  id={id}
+  class={cn(
+    "py-20 sm:py-24 lg:py-28",
+    tone === "muted" && "border-y border-border/60 bg-card/40",
+    className,
+  )}
+>
+  <Container>
+    <slot />
+  </Container>
+</section>

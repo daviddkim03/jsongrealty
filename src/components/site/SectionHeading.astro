@@ -1,0 +1,23 @@
+---
+import { cn } from "@/lib/utils"
+import Eyebrow from "./Eyebrow.astro"
+
+interface Props {
+  eyebrow?: string
+  class?: string
+}
+
+const { eyebrow, class: className } = Astro.props
+---
+
+<div class={cn("max-w-2xl", className)} data-reveal>
+  {eyebrow && <Eyebrow>{eyebrow}</Eyebrow>}
+  <h2 class="mt-5 text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+    <slot />
+  </h2>
+  {Astro.slots.has("description") && (
+    <p class="mt-5 text-lg leading-relaxed text-pretty text-muted-foreground">
+      <slot name="description" />
+    </p>
+  )}
+</div>

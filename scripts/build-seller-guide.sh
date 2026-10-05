@@ -5,8 +5,8 @@
 #   ./scripts/build-seller-guide.sh
 #
 # Requires `chromium` (or chrome) on PATH. Outputs the PDF to
-# public/assets/guides/jsong-atlanta-sellers-guide.pdf — the path
-# referenced by public/assets/js/api-config.js.
+# public/assets/guides/jsong-atlanta-sellers-guide.pdf, the path
+# referenced by `site.guides.seller` in src/config/site.ts.
 
 set -euo pipefail
 

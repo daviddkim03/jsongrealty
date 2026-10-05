@@ -1,0 +1,141 @@
+---
+import { LuMail, LuPhone } from "react-icons/lu"
+import { SiInstagram } from "react-icons/si"
+
+import { buttonVariants } from "@/components/ui/button"
+import { Separator } from "@/components/ui/separator"
+import { mailtoHref, site, telHref } from "@/config/site"
+import { cn } from "@/lib/utils"
+import { Brand } from "./Brand"
+import Container from "./Container.astro"
+
+const year = new Date().getFullYear()
+
+const columns = [
+  {
+    title: "Explore",
+    links: [
+      { href: "/listings/", label: "Listings" },
+      { href: "/work-with-joshua/", label: "Services" },
+    ],
+  },
+  {
+    title: "Company",
+    links: [
+      { href: "/about/", label: "About" },
+      { href: "/contact/", label: "Contact" },
+    ],
+  },
+]
+
+const socials = [
+  { href: site.contact.instagram.url, label: "Instagram", icon: SiInstagram },
+  { href: mailtoHref, label: "Email", icon: LuMail },
+  { href: telHref, label: "Call", icon: LuPhone },
+]
+
+const headingClass =
+  "font-sans text-xs font-medium tracking-[0.2em] text-muted-foreground uppercase"
+const linkClass =
+  "text-sm text-foreground/80 transition-colors hover:text-foreground"
+---
+
+<footer class="border-t bg-card/30">
+  <Container class="py-16">
+    <div class="grid grid-cols-2 gap-x-8 gap-y-12 sm:grid-cols-3 lg:grid-cols-[1.6fr_1fr_1fr_1.3fr]">
+      <div class="col-span-2 sm:col-span-3 lg:col-span-1">
+        <Brand />
+        <p class="mt-5 text-sm leading-relaxed text-muted-foreground">
+          {site.agent.name} · {site.agent.title}
+          <br />
+          {site.agent.brokerage} · {site.agent.city}
+        </p>
+        <div class="mt-6 flex gap-2">
+          {socials.map(({ href, label, icon: Icon }) => (
+            <a
+              href={href}
+              aria-label={label}
+              {...(href.startsWith("http")
+                ? { target: "_blank", rel: "noopener" }
+                : {})}
+              class={cn(
+                buttonVariants({ variant: "outline", size: "icon" }),
+                "text-muted-foreground",
+              )}
+            >
+              <Icon aria-hidden="true" className="size-4" />
+            </a>
+          ))}
+        </div>
+      </div>
+
+      {columns.map((column) => (
+        <div>
+          <h2 class={headingClass}>{column.title}</h2>
+          <ul class="mt-5 space-y-3">
+            {column.links.map((link) => (
+              <li>
+                <a href={link.href} class={linkClass}>
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+
+      <div class="col-span-2 sm:col-span-1">
+        <h2 class={headingClass}>Contact</h2>
+        <ul class="mt-5 space-y-3">
+          <li>
+            <a
+              href={telHref}
+              class:list={[linkClass, "inline-flex items-center gap-2.5"]}
+            >
+              <LuPhone
+                aria-hidden="true"
+                className="size-4 text-muted-foreground"
+              />
+              {site.contact.phone}
+            </a>
+          </li>
+          <li>
+            <a
+              href={mailtoHref}
+              class:list={[linkClass, "inline-flex items-center gap-2.5"]}
+            >
+              <LuMail
+                aria-hidden="true"
+                className="size-4 text-muted-foreground"
+              />
+              {site.contact.email}
+            </a>
+          </li>
+          <li>
+            <a
+              href={site.contact.instagram.url}
+              target="_blank"
+              rel="noopener"
+              class:list={[linkClass, "inline-flex items-center gap-2.5"]}
+            >
+              <SiInstagram
+                aria-hidden="true"
+                className="size-4 text-muted-foreground"
+              />
+              {site.contact.instagram.handle}
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <Separator className="my-10" />
+
+    <div class="flex flex-col gap-2 text-xs text-muted-foreground sm:flex-row sm:justify-between">
+      <p>
+        © {year} {site.name}. All rights reserved.
+      </p>
+      <p>Equal Housing Opportunity. Licensed in the State of Georgia.</p>
+    </div>
+  </Container>
+</footer>

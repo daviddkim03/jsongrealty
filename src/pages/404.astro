@@ -1,0 +1,48 @@
+---
+import { LuArrowRight } from "react-icons/lu"
+
+import Container from "@/components/site/Container.astro"
+import Eyebrow from "@/components/site/Eyebrow.astro"
+import { buttonVariants } from "@/components/ui/button"
+import Layout from "@/layouts/Layout.astro"
+---
+
+<Layout
+  title="Page not found — JSong Realty"
+  description="The page you're looking for doesn't exist or has moved."
+>
+  <section class="relative isolate overflow-hidden">
+    <div
+      aria-hidden="true"
+      class="bg-grid absolute inset-0 -z-10 mask-[radial-gradient(ellipse_60%_60%_at_50%_0%,black,transparent_75%)]"
+    ></div>
+    <Container class="flex min-h-[70svh] flex-col items-center justify-center py-24 text-center">
+      <Eyebrow>Error 404</Eyebrow>
+      <h1 class="mt-6 text-5xl leading-[1.04] tracking-tight sm:text-6xl">
+        This page has <em class="text-foreground/65">moved on.</em>
+      </h1>
+      <p class="mt-6 max-w-lg text-lg leading-relaxed text-balance text-muted-foreground">
+        The page you're looking for doesn't exist or has been moved. Here are a
+        few good places to start instead.
+      </p>
+      <div class="mt-10 flex flex-wrap justify-center gap-3">
+        <a href="/" class={buttonVariants({ size: "xl" })}>
+          Back to home
+        </a>
+        <a
+          href="/listings/"
+          class={buttonVariants({ variant: "outline", size: "xl" })}
+        >
+          Browse listings
+        </a>
+        <a
+          href="/contact/"
+          class={buttonVariants({ variant: "ghost", size: "xl" })}
+        >
+          Contact Joshua
+          <LuArrowRight aria-hidden="true" data-icon="inline-end" />
+        </a>
+      </div>
+    </Container>
+  </section>
+</Layout>

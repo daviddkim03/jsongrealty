@@ -1,119 +1,77 @@
 ---
+import "@/styles/global.css"
+
+// Above-the-fold faces, preloaded so the hero headline doesn't swap late.
+import frauncesItalic from "@fontsource-variable/fraunces/files/fraunces-latin-opsz-italic.woff2?url"
+import fraunces from "@fontsource-variable/fraunces/files/fraunces-latin-opsz-normal.woff2?url"
+import inter from "@fontsource-variable/inter/files/inter-latin-wght-normal.woff2?url"
+
+import SiteFooter from "@/components/site/SiteFooter.astro"
+import SiteHeader from "@/components/site/SiteHeader.astro"
+import { site } from "@/config/site"
+import { cn } from "@/lib/utils"
+
 interface Props {
-  title: string;
-  description?: string;
-  ogTitle?: string;
-  ogDescription?: string;
-  bodyClass?: string;
-  headerClass?: string;
-  canonical?: string;
+  title: string
+  description?: string
+  ogTitle?: string
+  ogDescription?: string
+  /** Transparent header over a full-bleed hero (home page). */
+  overlayHeader?: boolean
 }
 
 const {
   title,
-  description = "Joshua Song is an Atlanta REALTOR® with Keller Williams Realty. Intown neighborhoods, Buckhead, and the broader metro — handled with care and clear data.",
+  description = site.description,
   ogTitle,
   ogDescription,
-  bodyClass = "inner-page",
-  headerClass = "solid",
-  canonical,
-} = Astro.props;
+  overlayHeader = false,
+} = Astro.props
 
-const pathname = Astro.url.pathname;
-const canonicalUrl = canonical ?? new URL(pathname, Astro.site ?? "https://jsongrealty.com").toString();
-const tabTitle = title.split("—")[0].trim();
+const canonicalUrl = new URL(
+  Astro.url.pathname,
+  Astro.site ?? site.url,
+).toString()
+const tabTitle = title.split("—")[0].trim()
 ---
 
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>{tabTitle}</title>
-  <meta name="description" content={description} />
-  <meta property="og:title" content={ogTitle ?? title} />
-  <meta property="og:description" content={ogDescription ?? description} />
-  <meta property="og:type" content="website" />
-  <link rel="canonical" href={canonicalUrl} />
-  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..700,0..100,0..1;1,9..144,300..700,0..100,0..1&family=Inter:wght@400;500;600;700&family=Caveat:wght@400;500;600&display=swap" />
-  <link rel="stylesheet" href="/assets/css/styles.css" />
-  <slot name="head" />
-</head>
-<body class={bodyClass}>
-
-  <header class={`site-header ${headerClass}`}>
-    <nav class="nav" aria-label="Primary">
-      <a href="/" class="brand" aria-label="JSong Realty home">
-        <span><span class="brand-mark">JS</span>ong</span>
-        <span class="brand-sub">Realty</span>
-      </a>
-      <button class="nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
-          <line x1="4" y1="7" x2="20" y2="7" />
-          <line x1="4" y1="12" x2="20" y2="12" />
-          <line x1="4" y1="17" x2="20" y2="17" />
-        </svg>
-      </button>
-      <ul class="nav-links">
-        <li><a href="/">Home</a></li>
-        <li><a href="/about/">About</a></li>
-        <li><a href="/listings/">Listings</a></li>
-        <li><a href="/work-with-joshua/">Services</a></li>
-        <li><a href="/contact/" class="nav-cta">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
-
-  <slot />
-
-  <footer class="site-footer">
-    <div class="container">
-      <div class="footer-grid">
-        <div class="footer-brand">
-          <a href="/" class="brand" aria-label="JSong Realty home">
-            <span><span class="brand-mark">JS</span>ong</span>
-            <span class="brand-sub">Realty</span>
-          </a>
-          <p><span data-brand-agent>Joshua Song</span> · REALTOR® · <span data-brand-brokerage>Keller Williams Realty</span> · <span data-brand-city>Atlanta, GA</span></p>
-          <p class="signature cta-gap-sm">Joshua</p>
-        </div>
-        <div class="footer-col">
-          <h4>Explore</h4>
-          <ul>
-            <li><a href="/listings/">Listings</a></li>
-            <li><a href="/work-with-joshua/">Services</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Company</h4>
-          <ul>
-            <li><a href="/about/">About</a></li>
-            <li><a href="/contact/">Contact</a></li>
-            <li><a data-brand-instagram href="#" target="_blank" rel="noopener">Instagram</a></li>
-          </ul>
-        </div>
-        <div class="footer-col">
-          <h4>Contact</h4>
-          <ul>
-            <li><a data-brand-phone href="#"></a></li>
-            <li><a data-brand-email href="#"></a></li>
-          </ul>
-        </div>
-      </div>
-      <div class="footer-bottom">
-        <span>© <span data-year></span> JSong Realty. All rights reserved.</span>
-        <span>Equal Housing Opportunity. Licensed in the State of Georgia.</span>
-      </div>
-    </div>
-  </footer>
-
-  <script src="/assets/js/api-config.js" is:inline></script>
-  <script src="/assets/js/main.js" defer is:inline></script>
-  <script src="/assets/js/listings.js" defer is:inline></script>
-  <script src="/assets/js/reviews.js" defer is:inline></script>
-  <script src="/assets/js/lead-magnet.js" defer is:inline></script>
-</body>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#0a0a0a" />
+    <title>{tabTitle}</title>
+    <meta name="description" content={description} />
+    <meta property="og:title" content={ogTitle ?? title} />
+    <meta property="og:description" content={ogDescription ?? description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={site.name} />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    {[inter, fraunces, frauncesItalic].map((href) => (
+      <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />
+    ))}
+    <script is:inline>
+      document.documentElement.classList.add("js")
+    </script>
+    <slot name="head" />
+  </head>
+  <body class="flex min-h-svh flex-col">
+    <a
+      href="#main"
+      class="sr-only z-[60] rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground focus:not-sr-only focus:fixed focus:top-3 focus:left-3"
+    >
+      Skip to content
+    </a>
+    <SiteHeader overlay={overlayHeader} />
+    <main id="main" class={cn("flex-1", !overlayHeader && "pt-16")}>
+      <slot />
+    </main>
+    <SiteFooter />
+    <script>
+      import "@/scripts/reveal"
+    </script>
+  </body>
 </html>

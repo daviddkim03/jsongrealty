@@ -1,0 +1,52 @@
+---
+import { LuArrowRight } from "react-icons/lu"
+
+import { buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import Eyebrow from "./Eyebrow.astro"
+import Section from "./Section.astro"
+
+interface Props {
+  eyebrow: string
+  title: string
+  description: string
+  cta: { href: string; label: string }
+  tone?: "default" | "muted"
+}
+
+const { eyebrow, title, description, cta, tone } = Astro.props
+---
+
+<Section tone={tone}>
+  <div
+    data-reveal
+    class="relative isolate overflow-hidden rounded-3xl border bg-card px-6 py-12 sm:px-12 sm:py-16 lg:px-16"
+  >
+    <div
+      aria-hidden="true"
+      class="bg-grid absolute inset-0 -z-10 mask-[radial-gradient(ellipse_60%_100%_at_100%_0%,black,transparent_75%)]"
+    ></div>
+    <div
+      aria-hidden="true"
+      class="absolute inset-0 -z-10 bg-[radial-gradient(40rem_20rem_at_100%_0%,oklch(1_0_0/0.08),transparent_70%)]"
+    ></div>
+    <div class="flex flex-col gap-8 lg:flex-row lg:items-center lg:justify-between lg:gap-16">
+      <div class="max-w-2xl">
+        <Eyebrow>{eyebrow}</Eyebrow>
+        <h2 class="mt-5 text-4xl leading-[1.08] tracking-tight sm:text-5xl">
+          {title}
+        </h2>
+        <p class="mt-4 text-lg leading-relaxed text-pretty text-muted-foreground">
+          {description}
+        </p>
+      </div>
+      <a
+        href={cta.href}
+        class={cn(buttonVariants({ size: "xl" }), "self-start lg:self-auto")}
+      >
+        {cta.label}
+        <LuArrowRight aria-hidden="true" data-icon="inline-end" />
+      </a>
+    </div>
+  </div>
+</Section>
